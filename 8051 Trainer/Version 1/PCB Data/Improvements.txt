@@ -1,0 +1,13 @@
+Cream Shell Must be carefully chosen.
+ON / OFF Switch distance. ON state of switch could be on left side instead of right.
+Reset Capacitor distance with knob of ucontroller bed.
+VR Resistor distance from from LCD.
+MAX Capacitor on top should be displaced a bit right.
+Power LED must be brought in front of 7805.
+Heat sink must be attached with 7805.
+VR must be attached with contract pin of LCD.
+DB25 must be attached with PCB no matter in stand alone condition.
+DB9 must be attached with PCB no matter in stand alone condition, jumpers do not look nice.
+With P0, one can attach only RTC or External Memory or LCD one at a time, LCD's port must be changed. P1 for data pins and RS,RW,EN can be provided with jumper wires.
+One more SIP must be attached with LED Bar Graph, in current scenario one can only check pin status on L-B-G or send data to external world one at a time.
+

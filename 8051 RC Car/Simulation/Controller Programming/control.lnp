@@ -1,0 +1,3 @@
+"control.obj" 
+TO "control" 
+CODE( 0X0000-0X0FFF )

@@ -1,0 +1,133 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        05/26/2012  09:33:17  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE receiver.obj TO receiver CODE (0X0000-0X0FFF)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  receiver.obj (RECEIVER)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  receiver (RECEIVER)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0001H     UNIT         ?DT?RECEIVER
+            IDATA   0009H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0034H     UNIT         ?PR?REC?RECEIVER
+            CODE    0834H     001DH     UNIT         ?PR?MAIN?RECEIVER
+            CODE    0851H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   receiver (RECEIVER)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?RECEIVER
+
+?PR?MAIN?RECEIVER
+  +--> ?PR?REC?RECEIVER
+
+
+
+SYMBOL TABLE OF MODULE:  receiver (RECEIVER)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        RECEIVER
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  B:0098H.0       PUBLIC        RI
+  B:0090H.3       PUBLIC        right
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/26/2012  09:33:17  PAGE 2
+
+
+  C:0834H         PUBLIC        main
+  B:0090H.2       PUBLIC        left
+  D:0099H         PUBLIC        SBUF
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  C:0800H         PUBLIC        rec
+  B:0090H.1       PUBLIC        backward
+  D:008DH         PUBLIC        TH1
+  B:0088H.6       PUBLIC        TR1
+  D:0008H         PUBLIC        a
+  B:0090H.0       PUBLIC        forward
+  -------         PROC          MAIN
+  C:0834H         LINE#         8
+  C:0834H         LINE#         9
+  C:0834H         LINE#         10
+  C:0837H         LINE#         11
+  C:0839H         LINE#         12
+  C:083BH         LINE#         13
+  C:083EH         LINE#         14
+  C:0841H         LINE#         15
+  C:0844H         LINE#         16
+  C:0846H         LINE#         17
+  C:084EH         LINE#         18
+  -------         ENDPROC       MAIN
+  -------         PROC          REC
+  C:0800H         LINE#         20
+  C:0800H         LINE#         21
+  C:0800H         LINE#         22
+  C:0800H         LINE#         23
+  C:0800H         LINE#         24
+  C:0803H         LINE#         25
+  C:0805H         LINE#         26
+  C:0808H         LINE#         27
+  C:080DH         LINE#         28
+  C:080DH         LINE#         29
+  C:080FH         LINE#         30
+  C:0811H         LINE#         31
+  C:0811H         LINE#         32
+  C:0816H         LINE#         33
+  C:0816H         LINE#         34
+  C:0818H         LINE#         35
+  C:081AH         LINE#         36
+  C:081AH         LINE#         37
+  C:081FH         LINE#         38
+  C:081FH         LINE#         39
+  C:0821H         LINE#         40
+  C:0823H         LINE#         41
+  C:0823H         LINE#         42
+  C:0828H         LINE#         43
+  C:0828H         LINE#         44
+  C:082AH         LINE#         45
+  C:082CH         LINE#         46
+  C:082CH         LINE#         47
+  C:0830H         LINE#         48
+  C:0830H         LINE#         49
+  C:0832H         LINE#         50
+  C:0832H         LINE#         51
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/26/2012  09:33:17  PAGE 3
+
+
+  -------         ENDPROC       REC
+  -------         ENDMOD        RECEIVER
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0051H BYTE ( 3%) *
+******************************************************************************
+
+Program Size: data=10.0 xdata=0 code=96
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

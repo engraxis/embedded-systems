@@ -1,0 +1,83 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.5.4	//
+!_TAG_REVISION_NAME	MCHPTags	//
+!_TAG_REVISION_VERSION	6.0.1	//
+Action_Byte1	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	244;"	l	line:244
+AnalyzeImplement	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	241;"	f	line:241	signature:(void)
+AnalyzeImplement	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	30;"	p	line:30	file:	signature:(void)
+AnonymousOff	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	506;"	l	line:506
+BA	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	507;"	l	line:507
+ContBStateFlag	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	44;"	v	line:44
+Delay_100ms	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	1794;"	f	line:1794	signature:(unsigned char DelayLoop)
+Delay_100ms	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	34;"	p	line:34	file:	signature:(unsigned char)
+EE	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	507;"	l	line:507
+EEW	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	507;"	l	line:507
+EL	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	507;"	l	line:507
+Get_Pins_Motor_Move	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	31;"	p	line:31	file:	signature:(unsigned char, unsigned char)
+Get_Pins_Motor_Move	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	498;"	f	line:498	signature:(unsigned char ContBState, unsigned char AddOnCont)
+Grip1::PORTCbits.RC4	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	25;"	d	line:25	file:
+Grip1Status	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	467;"	l	line:467
+Grip2::PORTCbits.RC5	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	26;"	d	line:26	file:
+Grip2Status	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	467;"	l	line:467
+GripperOperate	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	32;"	p	line:32	file:	signature:(void)
+GripperOperate	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	465;"	f	line:465	signature:(void)
+Lvar	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	1780;"	l	line:1780
+Lvar	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	1796;"	l	line:1796
+Mode_Byte1	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	243;"	l	line:243
+Motor	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	502;"	l	line:502
+MotorOnOffTime	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	1778;"	f	line:1778	signature:(unsigned int DelayLoop)
+MotorOnOffTime	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	33;"	p	line:33	file:	signature:(unsigned int)
+Motor_p1::PORTCbits.RC0	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	21;"	d	line:21	file:
+Motor_p2::PORTCbits.RC1	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	22;"	d	line:22	file:
+Motor_r1::PORTDbits.RD6	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	19;"	d	line:19	file:
+Motor_r2::PORTDbits.RD7	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	20;"	d	line:20	file:
+Motor_x1::PORTDbits.RD4	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	17;"	d	line:17	file:
+Motor_x2::PORTDbits.RD5	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	18;"	d	line:18	file:
+Motor_y1::PORTDbits.RD2	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	15;"	d	line:15	file:
+Motor_y2::PORTDbits.RD3	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	16;"	d	line:16	file:
+Motor_yaw1::PORTCbits.RC2	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	23;"	d	line:23	file:
+Motor_yaw2::PORTCbits.RC3	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	24;"	d	line:24	file:
+Motor_z1::PORTDbits.RD0	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	13;"	d	line:13	file:
+Motor_z2::PORTDbits.RD1	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	14;"	d	line:14	file:
+OnWorkMain	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	212;"	f	line:212	signature:(void)
+OnWorkMain	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	36;"	p	line:36	file:	signature:(void)
+ReadEEPROM	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	200;"	f	line:200	signature:(unsigned char sadd, unsigned char eadd)
+ReadEEPROM	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	37;"	p	line:37	file:	signature:(unsigned char, unsigned char)
+ReadFlash	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	38;"	p	line:38	file:	signature:(unsigned int)
+ReadFlash	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	453;"	f	line:453	signature:(unsigned int sadd)
+Rot	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	503;"	l	line:503
+SH	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	507;"	l	line:507
+ServeReceiveInterrupt	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	29;"	p	line:29	file:	signature:(void)
+ServeReceiveInterrupt	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	91;"	f	line:91	signature:(void)
+SpTpEp	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	41;"	v	line:41
+Speed	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	500;"	l	line:500
+Steps	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	501;"	l	line:501
+StepsAux	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	43;"	v	line:43
+StepsSmooth	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	501;"	l	line:501
+StepsStart	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	501;"	l	line:501
+StepsStop	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	501;"	l	line:501
+StopPulses	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	505;"	l	line:505
+StoreData	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	293;"	f	line:293	signature:(unsigned char CP)
+StoreData	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	35;"	p	line:35	file:	signature:(unsigned char)
+WR	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	507;"	l	line:507
+WhatToDo	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	42;"	v	line:42
+check_isr	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	49;"	p	line:49	file:	signature:(void)
+check_isr	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	70;"	f	line:70	signature:(void)
+check_low_isr	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	50;"	p	line:50	file:	signature:(void)
+check_low_isr	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	86;"	f	line:86	signature:(void)
+dummy	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	45;"	v	line:45
+f	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	202;"	l	line:202
+i	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	40;"	v	line:40
+init_serial	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	223;"	f	line:223	signature:(void)
+init_serial	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	28;"	p	line:28	file:	signature:(void)
+j	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	202;"	l	line:202
+j	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	295;"	l	line:295
+loop	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	504;"	l	line:504
+main	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	145;"	f	line:145	signature:(void)
+my_high_prio_int	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	53;"	f	line:53	signature:(void)
+my_low_prio_int	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	61;"	f	line:61	signature:(void)
+result	D:\abxLabs\Tenders\Robotic Arm\Embedded\Code.c	93;"	l	line:93

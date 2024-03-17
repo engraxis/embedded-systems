@@ -1,0 +1,34 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.5.4	//
+!_TAG_REVISION_NAME	MCHPTags	//
+!_TAG_REVISION_VERSION	6.0.1	//
+bin_2_ascii	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	24;"	p	line:24	file:	signature:(void)
+bin_2_ascii	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	98;"	f	line:98	signature:(void)
+busy::PORTDbits.RD7	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	17;"	d	line:17	file:
+d1	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	27;"	v	line:27
+d2	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	27;"	v	line:27
+d3	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	27;"	v	line:27
+dec	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	27;"	v	line:27
+delay	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	114;"	f	line:114	signature:(unsigned double y)
+delay	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	22;"	p	line:22	file:	signature:(unsigned double)
+en::PORTBbits.RB2	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	16;"	d	line:16	file:
+i	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	26;"	v	line:26
+j	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	26;"	v	line:26
+k	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	26;"	v	line:26
+lcdcmd	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	20;"	p	line:20	file:	signature:(unsigned char)
+lcdcmd	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	87;"	f	line:87	signature:(unsigned char value)
+lcddata	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	21;"	p	line:21	file:	signature:(unsigned char)
+lcddata	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	61;"	f	line:61	signature:(unsigned char value)
+lcdready	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	23;"	p	line:23	file:	signature:(void)
+lcdready	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	72;"	f	line:72	signature:(void)
+ldata::PORTD	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	12;"	d	line:12	file:
+main	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	29;"	f	line:29	signature:(void)
+nam	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	33;"	l	line:33
+rs::PORTBbits.RB0	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	14;"	d	line:14	file:
+rw::PORTBbits.RB1	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	15;"	d	line:15	file:
+st	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	31;"	l	line:31
+tem	D:\Engr. Abdullah Tahir\BS\abz - LABORATORY\ALL PROJECTS\PIC18 Digital Temperature Sensor\Polling\PORTB Code.c	32;"	l	line:32

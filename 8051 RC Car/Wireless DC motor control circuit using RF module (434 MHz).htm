@@ -1,0 +1,484 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0087)http://www.engineersgarage.com/electronic-circuits/dc-motor-control-circuit-wireless-rf -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" class="js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		
+		
+	
+<link rel="shortcut icon" href="http://www.engineersgarage.com/sites/default/files/jd_purity_favicon.gif" type="image/x-icon">
+<meta name="keywords" content="Wireless DC motor control circuit,rf remote control,wireless motor control project,RF module,wireless DC motor control,RF motor control,rf transmitter and receiver,rf transmitter receiver circuit,rf remote controls,RF Applications">
+<meta name="description" content="Wireless DC motor control project with circuit. RF module is used to transfer control signals to the DC motor over a distance.">
+	<title>Wireless DC motor control circuit using RF module (434 MHz)</title>
+	<link type="text/css" rel="stylesheet" media="all" href="./Wireless DC motor control circuit using RF module (434 MHz)_files/css_566c9879e9215920af2345c7118eff2e.css">
+<link type="text/css" rel="stylesheet" media="print" href="./Wireless DC motor control circuit using RF module (434 MHz)_files/css_bbdbdaadde6c62fd2ee9d5b6aa6183ef.css">
+	<script type="text/javascript" async="" src="./Wireless DC motor control circuit using RF module (434 MHz)_files/ga.js"></script><script type="text/javascript" src="./Wireless DC motor control circuit using RF module (434 MHz)_files/js_1820beb78b69e4a93c0660ded93dbaa6.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, { "basePath": "/", "tabs": { "slide": true, "fade": false, "speed": "fast", "auto_height": false, "next_text": "next", "previous_text": "previous", "navigation_titles": "0" } });
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var prc = "EE065";
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+$(document).ready(function(){	
+						$(".page-heading").after("<span class =heading-project-code>" + prc + "</span>");
+					});
+//--><!]]>
+</script>
+	<script type="text/javascript" src="./Wireless DC motor control circuit using RF module (434 MHz)_files/js_674238bb7831e99570a4b8d31fa018eb.js"></script>
+		
+	<style type="text/css" media="all"></style><link type="text/css" rel="stylesheet" media="all" href="./Wireless DC motor control circuit using RF module (434 MHz)_files/t3css_a04dc31df3871b9d4b6fce753de8f0b3.css">
+<style type="text/css" media="print"></style><link type="text/css" rel="stylesheet" media="print" href="./Wireless DC motor control circuit using RF module (434 MHz)_files/t3css_ec60ac38efe20aaf205ecce2e0581732.css">
+<style type="text/css" media="all"></style><link type="text/css" rel="stylesheet" media="all" href="./Wireless DC motor control circuit using RF module (434 MHz)_files/t3css_4fa8133b26260947c23c9ea00b1edb4c.css">
+<style type="text/css" media="print"></style><link type="text/css" rel="stylesheet" media="print" href="./Wireless DC motor control circuit using RF module (434 MHz)_files/t3css_4fa8133b26260947c23c9ea00b1edb4c.css">
+	
+
+<link rel="stylesheet" type="text/css" href="./Wireless DC motor control circuit using RF module (434 MHz)_files/css">
+<style type="text/css">
+
+
+
+
+
+
+
+
+</style>
+
+<style type="text/css">
+/*dynamic css*/
+	.main {
+		width: 95%;
+	}
+</style>
+	
+		<!--[if IE 7.0]>
+	<style>
+	.clearfix { display: inline-block; } /* IE7xhtml*/
+	</style>
+	<![endif]-->
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17412058-4']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<script type="text/javascript" async="" src="./Wireless DC motor control circuit using RF module (434 MHz)_files/bsa.js"></script><style id="wrc-middle-css" type="text/css">.wrc_whole_window{	display: none;	position: fixed; 	z-index: 2147483647;	background-color: rgba(40, 40, 40, 0.9);	word-spacing: normal;	margin: 0px;	padding: 0px;	border: 0px;	left: 0px;	top: 0px;	width: 100%;	height: 100%;	line-height: normal;	letter-spacing: normal;}.wrc_middle_main {	font-family: Segoe UI, Arial Unicode MS, Arial, Sans-Serif;	font-size: 14px;	width: 600px;	height: auto;	margin: 0px auto;	margin-top: 15%;    background: url(chrome-extension://icmlaeflemplmjndnaapfdbbnpncnbda/skin/images/background-body.jpg) repeat-x left top;	background-color: rgb(39, 53, 62);}.wrc_middle_logo {    background: url(chrome-extension://icmlaeflemplmjndnaapfdbbnpncnbda/skin/images/logo.jpg) no-repeat left bottom;    width: 140px;    height: 42px;    color: orange;    display: table-cell;    text-align: right;    vertical-align: middle;}.wrc_icon_warning {	margin: 20px 10px 20px 15px;	float: left;	background-color: transparent;}.wrc_middle_title {    color: #b6bec7;	height: auto;    margin: 0px auto;	font-size: 2.2em;	white-space: nowrap;	text-align: center;}.wrc_middle_hline {    height: 2px;	width: 100%;    display: block;}.wrc_middle_description {	text-align: center;	margin: 15px;	font-size: 1.4em;	padding: 20px;	height: auto;	color: white;	min-height: 3.5em;}.wrc_middle_actions_main_div {	margin-bottom: 15px;	text-align: center;}.wrc_middle_actions_blue_button {	-moz-appearance: none;	border-radius: 7px;	-moz-border-radius: 7px/7px;	border-radius: 7px/7px;	background-color: rgb(0, 173, 223) !important;	display: inline-block;	width: auto;	cursor: Pointer;	border: 2px solid #00dddd;}.wrc_middle_actions_blue_button:hover {	background-color: rgb(0, 159, 212) !important;}.wrc_middle_actions_blue_button:active {	background-color: rgb(0, 146, 200) !important;	border: 2px solid #00aaaa;}.wrc_middle_actions_blue_button div {	display: inline-block;	width: auto;	cursor: Pointer;	margin: 3px 10px 3px 10px;	color: white;	font-size: 1.2em;	font-weight: bold;}.wrc_middle_action_low {	font-size: 0.9em;	white-space: nowrap;	cursor: Pointer;	color: grey !important;	margin: 10px 10px 0px 10px;	text-decoration: none;}.wrc_middle_action_low:hover {	color: #aa4400 !important;}.wrc_middle_actions_rest_div {	padding-top: 5px;	white-space: nowrap;	text-align: center;}.wrc_middle_action {	white-space: nowrap;	cursor: Pointer;	color: red !important;	font-size: 1.2em;	margin: 10px 10px 0px 10px;	text-decoration: none;}.wrc_middle_action:hover {	color: #aa4400 !important;}</style><script id="wrc-script-middle_window" type="text/javascript" language="JavaScript">var g_inputsCnt = 0;var g_InputThis = new Array(null, null, null, null);var g_alerted = false;/* we test the input if it includes 4 digits   (input is a part of 4 inputs for filling the credit-card number)*/function is4DigitsCardNumber(val){	var regExp = new RegExp('[0-9]{4}');	return (val.length == 4 && val.search(regExp) == 0);}/* testing the whole credit-card number 19 digits devided by three '-' symbols or   exactly 16 digits without any dividers*/function isCreditCardNumber(val){	if(val.length == 19)	{		var regExp = new RegExp('[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}');		return (val.search(regExp) == 0);	}	else if(val.length == 16)	{		var regExp = new RegExp('[0-9]{4}[0-9]{4}[0-9]{4}[0-9]{4}');		return (val.search(regExp) == 0);	}	return false;}function CheckInputOnCreditNumber(self){	if(g_alerted)		return false;	var value = self.value;	if(self.type == 'text')	{		if(is4DigitsCardNumber(value))		{			var cont = true;			for(i = 0; i < g_inputsCnt; i++)				if(g_InputThis[i] == self)					cont = false;			if(cont && g_inputsCnt < 4)			{				g_InputThis[g_inputsCnt] = self;				g_inputsCnt++;			}		}		g_alerted = (g_inputsCnt == 4);		if(g_alerted)			g_inputsCnt = 0;		else			g_alerted = isCreditCardNumber(value);	}	return g_alerted;}function CheckInputOnPassword(self){	if(g_alerted)		return false;	var value = self.value;	if(self.type == 'password')	{		g_alerted = (value.length > 0);	}	return g_alerted;}function onInputBlur(self, bRatingOk, bFishingSite){	var bCreditNumber = CheckInputOnCreditNumber(self);	var bPassword = CheckInputOnPassword(self);	if((!bRatingOk || bFishingSite == 1) && (bCreditNumber || bPassword) )	{		var warnDiv = document.getElementById("wrcinputdiv");		if(warnDiv)		{			/* show the warning div in the middle of the screen */			warnDiv.style.left = "0px";			warnDiv.style.top = "0px";			warnDiv.style.width = "100%";			warnDiv.style.height = "100%";			document.getElementById("wrc_warn_fs").style.display = 'none';			document.getElementById("wrc_warn_cn").style.display = 'none';			if(bFishingSite)				document.getElementById("wrc_warn_fs").style.display = 'block';			else				document.getElementById("wrc_warn_cn").style.display = 'block';			warnDiv.style.display = 'block';		}	}}</script></head><link id="apn-null-stylesheet" rel="stylesheet" href="chrome-extension://aaaaoggiphohkihibdkcnhnokmkfmhnj/config/skin/css/containers.css"><iframe id="apn-null-toolbar" src="./Wireless DC motor control circuit using RF module (434 MHz)_files/toolbar.htm" class="apn-toolbar SkipThisFixedPosition" style="top: 0px;"></iframe>
+<body id="bd" class="fs3">
+<!-- BuySellAds.com Ad Code -->
+<script type="text/javascript">
+(function(){
+  var bsa = document.createElement('script');
+     bsa.type = 'text/javascript';
+     bsa.async = true;
+     bsa.src = 'http://s3.buysellads.com/ac/bsa.js';
+  (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+})();
+</script>
+<!-- End BuySellAds.com Ad Code -->
+<div id="ja-wrapper">
+	<a name="Top" id="Top"></a>
+	<div id="ja-header" class="wrap">		
+
+
+	<div class="main clearfix"><div class="logo">
+	<a href="http://www.engineersgarage.com/" style="background-image:url(/sites/all/themes/joomlart/jd_purity/logo.png)" title="EngineersGarage"><span>EngineersGarage</span></a>
+</div>
+
+
+
+<div id="ja-search">
+	<form action="./Wireless DC motor control circuit using RF module (434 MHz)_files/Wireless DC motor control circuit using RF module (434 MHz).htm" accept-charset="UTF-8" method="post" id="search-theme-form">
+<div><div id="search" class="container-inline">
+  <div class="form-item" id="edit-search-theme-form-1-wrapper">
+ <label for="edit-search-theme-form-1">Search this site: </label>
+ <input type="text" maxlength="128" name="search_theme_form" id="edit-search-theme-form-1" size="15" value="" title="Enter the terms you wish to search for." class="form-text">
+</div>
+<input type="submit" name="op" id="edit-submit" value="Search" class="form-submit">
+<input type="hidden" name="form_build_id" id="form-0d6fc3e4154f25be00f3ee8f9207a015" value="form-0d6fc3e4154f25be00f3ee8f9207a015">
+<input type="hidden" name="form_token" id="edit-search-theme-form-form-token" value="7b1d80e3392a8cfb481eb098c025d0b9">
+<input type="hidden" name="form_id" id="edit-search-theme-form" value="search_theme_form">
+</div>
+
+</div></form>
+</div>
+</div>
+
+
+</div>		
+<div id="ja-mainnav" class="wrap">		
+
+
+	<div class="main clearfix"><script type="text/javascript">jQuery(document).ready(function(){
+    		jQuery('.ja-megamenu').JDMegaMenu({effectIn:"jswing",effectOut:"jswing",durationIn:300,durationOut:400,delay:1000,direction:0});
+    	});</script><div class="ja-megamenu" id="ja-megamenu"><ul class="megamenu level0"><li class="mega  first" id="menu1"><a href="http://www.engineersgarage.com/" class="mega  first" title="Home"><span class="menu-title" style="cursor: pointer; ">Home</span></a></li><li class="mega " id="menu2"><a href="http://www.engineersgarage.com/insight" class="mega " title="Insight"><span class="menu-title" style="cursor: pointer; ">Insight</span></a></li><li class="mega  haschild" id="menu10"><a href="http://www.engineersgarage.com/eg_labs" class="mega  haschild" title="EG Labs"><span class="menu-title" style="cursor: pointer; ">EG Labs</span></a><div class="childcontent childcontent-menu10" style="overflow:hidden;width:200px;"><div class="childcontent-inner-wrap childcontent-inner-wrap-menu10" style="position: relative; width: 200px; top: -144px; "><div class="childcontent-inner clearfix" style="width:200px;"><div class="megacol column0 first" style="width:200px;"><ul class="megamenu level1"><li class="mega  first haschild" id="menu6"><a href="http://www.engineersgarage.com/microcontroller/8051projects/list" class="mega  first haschild" title="Microcontroller"><span class="menu-title" style="cursor: pointer; ">Microcontroller</span></a><div class="childcontent childcontent-menu6" style="overflow:hidden;width:200px;"><div class="childcontent-inner-wrap childcontent-inner-wrap-menu6" style="position: relative; width: 200px; top: -114px; margin-left: -200px; "><div class="childcontent-inner clearfix" style="width:200px;"><div class="megacol column0 first" style="width:200px;"><ul class="megamenu level2"><li class="mega  first" id="menu3"><a href="http://www.engineersgarage.com/microcontroller/8051projects" class="mega  first" title="8051"><span class="menu-title" style="cursor: pointer; ">8051</span></a></li><li class="mega " id="menu4"><a href="http://www.engineersgarage.com/embedded/avr-microcontroller-projects" class="mega " title="AVR"><span class="menu-title" style="cursor: pointer; ">AVR</span></a></li><li class="mega  last" id="menu5"><a href="http://www.engineersgarage.com/embedded/pic-microcontroller-projects" class="mega  last" title="PIC"><span class="menu-title" style="cursor: pointer; ">PIC</span></a></li></ul></div></div>
+</div>
+</div>
+</li>
+<li class="mega " id="menu7"><a href="http://www.engineersgarage.com/electronic-circuits" class="mega " title="Electronic Circuits"><span class="menu-title" style="cursor: pointer; ">Electronic Circuits</span></a></li><li class="mega " id="menu8"><a href="http://www.engineersgarage.com/electronic-components" class="mega " title="Components"><span class="menu-title" style="cursor: pointer; ">Components</span></a></li><li class="mega  last" id="menu9"><a href="http://www.engineersgarage.com/tutorials" class="mega  last" title="Tutorials"><span class="menu-title" style="cursor: pointer; ">Tutorials</span></a></li></ul></div></div>
+</div>
+</div>
+</li>
+<li class="mega " id="menu11"><a href="http://www.engineersgarage.com/articles" class="mega " title="Articles"><span class="menu-title" style="cursor: pointer; ">Articles</span></a></li><li class="mega " id="menu12"><a href="http://www.engineersgarage.com/invention-stories" class="mega " title="Invention Stories"><span class="menu-title" style="cursor: pointer; ">Invention Stories</span></a></li><li class="mega " id="menu13"><a href="http://www.engineersgarage.com/forum" class="mega " title="Forum"><span class="menu-title" style="cursor: pointer; ">Forum</span></a></li><li class="mega " id="menu14"><a href="http://www.engineersgarage.com/creativity-shed" class="mega " title="Creativity Shed"><span class="menu-title" style="cursor: pointer; ">Creativity Shed</span></a></li><li class="mega haschild" id="menu21"><a href="http://www.engineersgarage.com/contribution" class="mega haschild" title="Knowledge Base"><span class="menu-title" style="cursor: pointer; ">Knowledge Base</span></a><div class="childcontent childcontent-menu21 ltr" style="width: 200px; right: auto; overflow-x: hidden; overflow-y: hidden; "><div class="childcontent-inner-wrap childcontent-inner-wrap-menu21" style="position: relative; width: 200px; top: -175px; "><div class="childcontent-inner clearfix" style="width:200px;"><div class="megacol column0 first" style="width:200px;"><ul class="megamenu level1"><li class="mega  first" id="menu15"><a href="http://www.engineersgarage.com/contribution" class="mega  first" title="Contributions"><span class="menu-title" style="cursor: pointer; ">Contributions</span></a></li><li class="mega " id="menu16"><a href="http://www.engineersgarage.com/how_to" class="mega " title="How to"><span class="menu-title" style="cursor: pointer; ">How to</span></a></li><li class="mega  haschild" id="menu18"><a href="http://www.engineersgarage.com/experts/d.mohankumar" class="mega  haschild" title="Experts"><span class="menu-title" style="cursor: pointer; ">Experts</span></a><div class="childcontent childcontent-menu18" style="overflow:hidden;width:200px;"><div class="childcontent-inner-wrap childcontent-inner-wrap-menu18" style="position: relative; width: 200px; top: -52px; margin-left: -200px; "><div class="childcontent-inner clearfix" style="width:200px;"><div class="megacol column0 first" style="width:200px;"><ul class="megamenu level2"><li class="mega  first" id="menu17"><a href="http://www.engineersgarage.com/experts/d.mohankumar" class="mega  first" title="D. MohanKumar"><span class="menu-title" style="cursor: pointer; ">D. MohanKumar</span></a></li></ul></div></div>
+</div>
+</div>
+</li>
+<li class="mega " id="menu19"><a href="http://www.engineersgarage.com/c-language-programs" class="mega " title="C-Programs"><span class="menu-title" style="cursor: pointer; ">C-Programs</span></a></li><li class="mega  last" id="menu20"><a href="http://www.engineersgarage.com/mygarage" class="mega  last" title="My Garage"><span class="menu-title" style="cursor: pointer; ">My Garage</span></a></li></ul></div></div>
+</div>
+</div>
+</li>
+<li class="mega " id="menu22"><a href="http://www.engineersgarage.com/advertisement" class="mega " title="Advertise"><span class="menu-title" style="cursor: pointer; ">Advertise</span></a></li><li class="mega " id="menu23"><a href="http://www.engineersgarage.com/contact" class="mega " title="Contact Us"><span class="menu-title" style="cursor: pointer; ">Contact Us</span></a></li><li class="mega  last" id="menu24"><a href="http://www.engineersgarage.com/submit" class="mega  last" title="Earn"><span class="menu-title" style="cursor: pointer; ">Earn</span></a></li></ul></div></div>
+
+
+</div>		
+
+ 
+<ul class="no-display">
+    <li><a href="http:/#ja-content" title="Skip to content">Skip to content</a></li>
+</ul><div id="ja-cpanel-wrapper" apn-was-fixed-top="0px" style="top: 34px; ">
+
+</div>
+
+<script type="text/javascript">
+
+var tmpl_name = 'jd_purity';
+ jQuery(document).ready(function(){ 
+	 var main = jQuery ('#ja-cpanel-main');
+	 var height = main.height();
+	 if(height <= 200)height=700; //fix for Chrome when using RTL (don't know why :D)
+	 main.css('position','absolute');
+	 main.css('right',0);	
+	 main.css('top',-height-10+'px');	
+	 var toggle = jQuery ('#ja-cpanel-toggle');
+	jQuery ('#ja-cpanel').css ('top', 0);
+	var jd_cpanel_status = 'close';
+	var quickmenu = jQuery('.jd-admin-menu-caption');
+	toggle.addClass ('close');
+	toggle.click (function () {
+		if (jd_cpanel_status == 'close') {
+			jd_cpanel_status = 'open';
+			if(jQuery('a',quickmenu).hasClass('open')){
+				quickmenu.click();
+				}
+			main.stop(true,false).animate({top:0},500,function(){
+				toggle.removeClass('close').addClass('open')
+				});			
+		} else {
+			jd_cpanel_status = 'close';
+			main.stop(true,false).animate({top: -height-10+'px'},700, function(){
+				toggle.removeClass('open').addClass('close');
+				});	
+			}
+		return false;
+	});
+ });
+
+</script>
+<div id="ja-slideshow" class="wrap">		
+
+
+	<div class="main clearfix"></div>
+
+
+</div>		
+	
+	<!-- MAIN CONTAINER -->
+	<div id="ja-container" class="wrap ja-l1">
+		
+
+	<div class="main">
+
+
+ 
+	<div class="main-inner1 clearfix">		<div id="ja-mainbody" style="width:100%">
+			<!-- CONTENT -->
+			<div id="ja-main" style="width: 80%; min-height: 1072px; ">
+			<div class="inner clearfix">
+				
+				<div id="ja-contentwrap" class="clearfix ">
+					<div id="ja-content" class="column" style="width:100%">
+						<div id="ja-current-content" class="column" style="width:100%">
+														
+							<div id="ja-content-main" class="ja-content-main clearfix" style="min-height: 1032px; ">
+								 <h1 class="page-heading"><a href="" title="Wireless motor control through RF">Wireless motor control through RF</a></h1><span class="heading-project-code">EE065</span> 								<div class="node-wrapper clearfix">
+								<div id="node-507" class="node ja-node clearfix">
+
+
+		  
+  
+  <div class="node-content clearfix">
+    <div id="tabs-tabset" class="drupal-tabs js-hide ui-tabs ui-widget ui-widget-content ui-corner-all tabs-processed" style="display: block; "><div class="description"></div><ul class="clear-block ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all tabs primary"><li class="tabset-tab-2 ui-state-default ui-corner-top ui-tabs-selected ui-state-active active first"><a href="http://www.engineersgarage.com/electronic-circuits/dc-motor-control-circuit-wireless-rf#tabset-tab-2"><span class="tab">Summary</span></a></li><li class="tabset-tab-7 ui-state-default ui-corner-top"><a href="http://www.engineersgarage.com/electronic-circuits/dc-motor-control-circuit-wireless-rf#tabset-tab-7"><span class="tab">Description</span></a></li><li class="tabset-tab-3 ui-state-default ui-corner-top"><a href="http://www.engineersgarage.com/electronic-circuits/dc-motor-control-circuit-wireless-rf#tabset-tab-3"><span class="tab">Circuit Diagram</span></a></li><li class="tabset-tab-5 ui-state-default ui-corner-top last"><a href="http://www.engineersgarage.com/electronic-circuits/dc-motor-control-circuit-wireless-rf#tabset-tab-5"><span class="tab">Components</span></a></li></ul><span class="clear"></span><div id="tabset-tab-2" class="tabs-tabset ui-tabs-panel ui-widget-content ui-corner-bottom"><h2 class="drupal-tabs-title js-hide">Summary</h2><div class="field field-type-text field-field-ad-summary-top">
+    <div class="field-items">
+            <div class="field-item odd">
+                    <script type="text/javascript"><!--
+google_ad_client = "ca-pub-0459431934138881";
+/* Electronics-Summary-Top */
+google_ad_slot = "1189437294";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="./Wireless DC motor control circuit using RF module (434 MHz)_files/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><iframe allowtransparency="true" frameborder="0" height="90" hspace="0" marginwidth="0" marginheight="0" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){i+=&#39;.call&#39;;setTimeout(h,0)}else if(h.match){i+=&#39;.nav&#39;;w.location.replace(h)}s.log&amp;&amp;s.log.push(i)}" scrolling="no" vspace="0" width="728" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;"></iframe></ins></ins>        </div>
+        </div>
+</div>
+<div class="field field-type-text field-field-summary">
+    <div class="field-items">
+            <div class="field-item odd">
+                    <p>&nbsp;<span style="line-height: 26px; font-size: small; text-align: justify; ">Wireless remote controlled toy cars work on the concept explained here. Motor control through RF communication is a very interesting application and is widely used in robotics, electronics toys, automation systems etc. This topic covers the way DC motors can be driven by using the controls from a distant place. The controls are transferred from one end to another by employing an&nbsp;</span><a style="line-height: 26px; font-size: small; text-align: justify; " href="http://www.engineersgarage.com/content/rf-module">RF module</a><span style="line-height: 26px; font-size: small; text-align: justify; ">.</span></p><div style="margin-bottom: 0.0001pt; text-align: justify; line-height: 32px; "><span style="font-size: small; "><span style="line-height: 26px; ">The&nbsp;<a href="http://www.engineersgarage.com/electronic-circuits/rf-module-based-wireless-remote">remote control</a>&nbsp;application of RF has been extended to operate a motor driver which in turn controls the direction of motors.</span></span></div><div style="margin-bottom: 0.0001pt; text-align: center; line-height: 32px; "><span image="" imgupl_floating_none=""><img alt="" title="" wysiwyg_imageupload="" imagecache="" width="640" height="640" src="./Wireless DC motor control circuit using RF module (434 MHz)_files/Wireless motor control through RF.gif"></span></div>        </div>
+        </div>
+</div>
+</div><div id="tabset-tab-7" class="tabs-tabset ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide"><h2 class="drupal-tabs-title js-hide">Description</h2><p style="text-align: justify;"><span style="font-family: Arial;"><span style="font-size: small;"><span style="line-height: 200%;">This circuit uses <a href="http://www.engineersgarage.com/electronic-circuits/rf-module-based-wireless-remote">RF module</a> to control DC motors through a motor driver IC </span></span></span><span style="font-size: small;"><span style="font-family: Times New Roman;"><span style="line-height: 200%;"><a href="http://www.engineersgarage.com/content/ic-l293d"><span style="font-family: Arial;">L293D</span></a><span style="font-family: Arial;">. Transmission is enabled by giving a low bit to pin14 (TE, active low) of encoder </span><a href="http://www.engineersgarage.com/content/ht12e"><span style="font-family: Arial;">HT12E</span></a></span><span style="font-family: Arial;"><span style="line-height: 200%;">. The controls for motor are first sent to HT12E. Pins 10 and 11 (D0-D1) are used to control one motor while pins 12 and 13 (D2-D3) to control another motor. The data signals of encoder HT12E work on negative logic. Therefore a particular signal is sent by giving a low bit to the corresponding data pin of encoder. </span></span></span></span></p><div style="margin-bottom: 0.0001pt; text-align: justify; line-height: 200%;"><span style="font-family: Arial;"><span style="font-size: small;"><span style="line-height: 200%;">The parallel signals generated at transmission end are first encoded (into serial format) by HT12E and then transferred through RF transmitter (434 MHz) at a baud rate of around 1-10 kbps. The same signals are acquired by RF receiver after which it is decoded by </span></span></span><span style="font-size: small;"><span style="font-family: Times New Roman;"><span style="line-height: 200%;"><a href="http://www.engineersgarage.com/content/ht12d"><span style="font-family: Arial;">HT12D</span></a></span><span style="font-family: Arial;"><span style="line-height: 200%;">. For more details, refer <a href="http://www.engineersgarage.com/electronic-circuits/rf-module-based-wireless-remote">RF remote control</a>.</span></span></span></span></div><div style="margin-bottom: 0.0001pt; text-align: justify; line-height: 200%;"><span style="font-family: Arial;">&nbsp;</span></div><div style="margin-bottom: 0.0001pt; text-align: justify; line-height: 200%;"><span style="font-family: Arial;"><span style="font-size: small;"><span style="line-height: 200%;">Since the encoder/decoder pair used here works on negative logic, the decoded signals are fed to an inverter (NOT gate) IC </span></span></span><span style="font-size: small;"><span style="font-family: Times New Roman;"><span style="line-height: 200%;"><a href="http://www.engineersgarage.com/content/ic-74ls04"><span style="font-family: Arial;">74LS04</span></a></span><span style="font-family: Arial;"><span style="line-height: 200%;">. The proper (inverted) signals are then supplied to L293D. </span><span style="line-height: 200%;">L293D contains two inbuilt </span></span><span style="line-height: 200%;"><a href="http://www.engineersgarage.com/electronic-circuits/h-bridge-motor-control"><span style="font-family: Arial;">H-bridge</span></a></span><span style="font-family: Arial;"><span style="line-height: 200%;"> driver circuits to drive two DC motors simultaneously, both in forward and reverse direction. </span></span></span></span></div><div style="margin-bottom: 0.0001pt; text-align: justify; line-height: 200%;"><span style="font-family: Arial;">&nbsp;</span></div><div style="margin-bottom: 0.0001pt; text-align: justify; line-height: 200%;"><span style="font-family: Arial;"><span style="font-size: small;"><span style="line-height: 200%;">The motor operations of two motors can be controlled by input logic at pins 2 &amp; 7 and pins 10 &amp; 15. Input logic 00 or 11 will stop the corresponding motor. Logic 01 and 10 will rotate it in clockwise and anticlockwise directions, respectively. Thus, depending upon the signals generated at the transmission end, the two motors can be rotated in desired directions. </span></span></span></div><p><span style="font-family: Arial;"><br></span></p></div><div id="tabset-tab-3" class="tabs-tabset ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide"><h2 class="drupal-tabs-title js-hide">Circuit Diagram</h2><div class="field field-type-text field-field-ad-summary-bottom">
+    <div class="field-items">
+            <div class="field-item odd">
+                    <script type="text/javascript"><!--
+google_ad_client = "ca-pub-0459431934138881";
+/* Electronics-Summary-Bottom */
+google_ad_slot = "4306962336";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="./Wireless DC motor control circuit using RF module (434 MHz)_files/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><ins id="aswift_1_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><iframe allowtransparency="true" frameborder="0" height="90" hspace="0" marginwidth="0" marginheight="0" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){i+=&#39;.call&#39;;setTimeout(h,0)}else if(h.match){i+=&#39;.nav&#39;;w.location.replace(h)}s.log&amp;&amp;s.log.push(i)}" scrolling="no" vspace="0" width="728" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;"></iframe></ins></ins>        </div>
+        </div>
+</div>
+<div class="field field-type-filefield field-field-crtdiagramone">
+    <div class="field-items">
+            <div class="field-item odd">
+                    <a href="http://www.engineersgarage.com/sites/default/files/circuitdiagram/Wireless%20motor%20control%20through%20RF%20circuit_0.gif" class="imagecache imagecache-normalimages imagecache-imagelink imagecache-normalimages_imagelink" target="_blank"><img src="./Wireless DC motor control circuit using RF module (434 MHz)_files/Wireless motor control through RF circuit_0.gif" alt="Wireless DC motor control circuit using RF module | RF Based DC Motor Control" title="Wireless DC motor control circuit using RF module (434 MHz)" class="imagecache imagecache-normalimages" width="250" height="250"></a>        </div>
+        </div>
+</div>
+</div><div id="tabset-tab-5" class="tabs-tabset ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide"><h2 class="drupal-tabs-title js-hide">Components</h2><div class="field field-type-nodereference field-field-components">
+    <div class="field-items">
+            <div class="field-item odd">
+                    <div class="view view-field-components view-id-field_components view-display-id-default view-dom-id-1">
+    
+  
+  
+      <div class="view-content">
+      <table class="views-table cols-2">
+    <thead>
+    <tr>
+              <th class="views-field views-field-field-image-fid">
+                  </th>
+              <th class="views-field views-field-body">
+                  </th>
+          </tr>
+  </thead>
+  <tbody>
+          <tr class="odd views-row-first">
+                  <td class="views-field views-field-field-image-fid">
+            <a href="http://www.engineersgarage.com/electronic-components/l293d-motor-driver-ic" class="imagecache imagecache-thumbnailhome imagecache-linked imagecache-thumbnailhome_linked"><img src="./Wireless DC motor control circuit using RF module (434 MHz)_files/L293D_0.jpg" alt="L293D Motor Driver IC Image" title="L293D Motor Driver IC" class="imagecache imagecache-thumbnailhome" width="170" height="150"></a><div>
+<ul class="links">
+<li class="customTotalView"><span>15,535-Reads</span></li></ul>
+</div>          </td>
+                  <td class="views-field views-field-body">
+            <a href="http://www.engineersgarage.com/electronic-components/l293d-motor-driver-ic">L293D</a><p style="text-align: justify;"><span style="font-size: small;"><span style="font-family: Times New Roman;"><span style="line-height: 200%;">L293D is a dual <a href="http://www.engineersgarage.com/electronic-circuits/h-bridge-motor-control">H-bridge</a> motor driver integrated circuit (IC). Motor drivers act as current amplifiers since they take a low-current control signal and provide a higher-current signal. This higher current signal is used to drive the motors.</span></span></span></p>...          </td>
+              </tr>
+          <tr class="even">
+                  <td class="views-field views-field-field-image-fid">
+            <a href="http://www.engineersgarage.com/electronic-components/74ls04-datasheet" class="imagecache imagecache-thumbnailhome imagecache-linked imagecache-thumbnailhome_linked"><img src="./Wireless DC motor control circuit using RF module (434 MHz)_files/7404.jpg" alt="74LS04 | IC 7404 " title="74LS04 | IC 7404 " class="imagecache imagecache-thumbnailhome" width="170" height="150"></a><div>
+<ul class="links">
+<li class="customTotalView"><span>14,268-Reads</span></li></ul>
+</div>          </td>
+                  <td class="views-field views-field-body">
+            <a href="http://www.engineersgarage.com/electronic-components/74ls04-datasheet">IC 74LS04</a><p style="text-align: justify;"><strong><span style="font-size: small;"><span style="font-family: Times New Roman;"><span style="line-height: 200%;">7404</span></span></span></strong><span style="font-size: small;"><span style="font-family: Times New Roman;"><span style="line-height: 200%;"> is a N<strong>OT gate IC</strong>. It consists of six inverters which perform logical invert action. The output of an inverter is the complement of its input logic state, <i>i.e.</i>, when input is high its...          </span></span></span></p></td>
+              </tr>
+          <tr class="odd">
+                  <td class="views-field views-field-field-image-fid">
+            <a href="http://www.engineersgarage.com/electronic-components/ht12d-datasheet" class="imagecache imagecache-thumbnailhome imagecache-linked imagecache-thumbnailhome_linked"><img src="./Wireless DC motor control circuit using RF module (434 MHz)_files/HT12D.jpg" alt="HT12D | HT12D Decoder IC Image" title="HT12D | HT12D" class="imagecache imagecache-thumbnailhome" width="170" height="150"></a><div>
+<ul class="links">
+<li class="customTotalView"><span>11,307-Reads</span></li></ul>
+</div>          </td>
+                  <td class="views-field views-field-body">
+            <a href="http://www.engineersgarage.com/electronic-components/ht12d-datasheet">HT12D Decoder IC</a><p style="text-align: justify;"><strong><span style="font-size: small;"><span style="font-family: Arial;"><span style="line-height: 200%;">HT12D</span></span></span></strong><span style="font-size: small;"><span style="font-family: Arial;"><span style="line-height: 200%;"> is a <strong>decoder integrated circuit</strong> that belongs to 2<sup>12 </sup>series of decoders. This series of decoders are mainly used for remote control system applications, like burglar alarm, car door controller, secur...          </span></span></span></p></td>
+              </tr>
+          <tr class="even">
+                  <td class="views-field views-field-field-image-fid">
+            <a href="http://www.engineersgarage.com/electronic-components/ht12e" class="imagecache imagecache-thumbnailhome imagecache-linked imagecache-thumbnailhome_linked"><img src="./Wireless DC motor control circuit using RF module (434 MHz)_files/HT12E_0.jpg" alt="HT12E Encoder IC Image" title="HT12E Encoder IC Image" class="imagecache imagecache-thumbnailhome" width="170" height="150"></a><div>
+<ul class="links">
+<li class="customTotalView"><span>13,439-Reads</span></li></ul>
+</div>          </td>
+                  <td class="views-field views-field-body">
+            <a href="http://www.engineersgarage.com/electronic-components/ht12e">HT12E Encoder IC</a><div style="margin: 0cm 0cm 0.0001pt -4.55pt; text-align: justify; line-height: 200%;"><strong><span style="font-size: small;"><span style="font-family: Arial;"><span style="line-height: 200%;">HT12E</span></span></span></strong><span style="font-size: small;"><span style="font-family: Arial;"><span style="line-height: 200%;"> is an <strong>encoder integrated circuit</strong> of 2<sup>12 </sup>series of encoders. They are paired with 2<sup>12</sup> series of decoders for use in remote control sy...          </span></span></span></div></td>
+              </tr>
+          <tr class="odd views-row-last">
+                  <td class="views-field views-field-field-image-fid">
+            <a href="http://www.engineersgarage.com/electronic-components/rf-module-transmitter-receiver" class="imagecache imagecache-thumbnailhome imagecache-linked imagecache-thumbnailhome_linked"><img src="./Wireless DC motor control circuit using RF module (434 MHz)_files/RF Module.jpg" alt="RF Module : Transmitter &amp; Receiver" title="RF Module : Transmitter &amp; Receiver" class="imagecache imagecache-thumbnailhome" width="170" height="150"></a><div>
+<ul class="links">
+<li class="customTotalView"><span>38,487-Reads</span></li></ul>
+</div>          </td>
+                  <td class="views-field views-field-body">
+            <a href="http://www.engineersgarage.com/electronic-components/rf-module-transmitter-receiver">RF Module (Transmitter &amp; Receiver)</a><div style="margin-bottom: 0.0001pt; text-align: justify; line-height: 100%;"><span style="font-size: small;"><span style="font-family: Arial;"><br></span></span></div><div style="margin-bottom: 0.0001pt; text-align: justify; line-height: 200%;"><span style="font-size: small;"><span style="font-family: Arial;"><span style="line-height: 200%;">The RF module, as the name suggests, operates at Radio Frequency. The corresponding frequency range varies between 30 kHz &amp; 300 GHz. In this RF syste...          </span></span></span></div></td>
+              </tr>
+      </tbody>
+</table>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>         </div>
+        </div>
+</div>
+</div></div>  </div>
+
+  <div class="node-links clearfix">
+    <div class="meta">
+        </div>
+
+          <div class="links"><ul class="links inline"><li class="statistics_counter first last"><span>23243 reads</span></li>
+</ul></div>
+      </div>
+
+</div>
+								</div>
+							</div>
+
+													</div>
+
+											</div>
+
+										<div id="ja-inset2" class="ja-col column ja-inset2" style="width: 0%; ">
+						 					</div>
+										
+				</div>
+
+							</div>
+			</div>
+			<!-- //CONTENT -->
+						<!-- LEFT COLUMN--> 
+			<div id="ja-left" class="column sidebar" style="width: 20%; min-height: 1072px; ">
+				
+								<div class="ja-colswrap ja-l1 clearfix">
+									<div id="ja-left1" class="ja-col  column" style="width: 100%; min-height: 1072px; ">
+						<div id="block-block-47" class="ja-block block block-block  clearfix">
+
+
+  <div class="block-content clearfix"><center><script language="JavaScript1.1" src="./Wireless DC motor control circuit using RF module (434 MHz)_files/B4104595;sz=180x150;pc=[TPAS_ID]">
+</script><!-- Copyright 2008 DoubleClick, a division of Google Inc. All rights reserved. -->
+<!-- Code auto-generated on Thu Apr 05 15:39:23 EDT 2012 -->
+<script src="./Wireless DC motor control circuit using RF module (434 MHz)_files/flashwrite_1_2.js"></script>
+<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" id="DCF255875455" width="180" height="150"><param name="movie" value="http://s0.2mdn.net/2211385/SIG_Thunderbolt_180x150.swf"><param name="flashvars" value="moviePath=http://s0.2mdn.net/2211385/&amp;moviepath=http://s0.2mdn.net/2211385/&amp;clickTag=http%3A//ad.doubleclick.net/click%253Bh%253Dv8/3c64/3/0/%252a/a%253B255875455%253B0-0%253B0%253B79498953%253B2928-180/150%253B47606932/47622405/1%253B%253B%257Eokv%253D%253Bpc%253D%255BTPAS_ID%255D%253B%253B%257Esscs%253D%253fhttp%3A//www.ti.com/thunderbolt-b"><param name="quality" value="high"><param name="wmode" value="opaque"><param name="base" value="http://s0.2mdn.net/2211385"><param name="AllowScriptAccess" value="never"><embed src="http://s0.2mdn.net/2211385/SIG_Thunderbolt_180x150.swf" flashvars="moviePath=http://s0.2mdn.net/2211385/&amp;moviepath=http://s0.2mdn.net/2211385/&amp;clickTag=http%3A//ad.doubleclick.net/click%253Bh%253Dv8/3c64/3/0/%252a/a%253B255875455%253B0-0%253B0%253B79498953%253B2928-180/150%253B47606932/47622405/1%253B%253B%257Eokv%253D%253Bpc%253D%255BTPAS_ID%255D%253B%253B%257Esscs%253D%253fhttp%3A//www.ti.com/thunderbolt-b" width="180" height="150" type="application/x-shockwave-flash" quality="high" swliveconnect="true" wmode="opaque" name="DCF255875455" base="http://s0.2mdn.net/2211385" allowscriptaccess="never"></object>
+<noscript>&lt;a target="_blank" href="http://ad.doubleclick.net/click%3Bh%3Dv8/3c64/3/0/%2a/a%3B255875455%3B0-0%3B0%3B79498953%3B2928-180/150%3B47606932/47622405/1%3B%3B%7Eokv%3D%3Bpc%3D%5BTPAS_ID%5D%3B%3B%7Esscs%3D%3fhttp://www.ti.com/thunderbolt-b"&gt;&lt;img src="http://s0.2mdn.net/2211385/SIG_Thunderbolt_180x150.gif" width="180" height="150" border="0" alt="Advertisement" galleryimg="no"&gt;&lt;/a&gt;</noscript>
+
+<noscript>
+&lt;A HREF="http://ad.doubleclick.net/jump/N5744.738592.ENGINEERSGARAGE.COM/B4104595;sz=180x150;pc=[TPAS_ID];ord=$gmt$?"&gt;
+&lt;IMG SRC="http://ad.doubleclick.net/ad/N5744.738592.ENGINEERSGARAGE.COM/B4104595;sz=180x150;pc=[TPAS_ID];ord=$gmt$?" BORDER=0 WIDTH=180 HEIGHT=150 ALT="Advertisement"&gt;&lt;/A&gt;
+</noscript></center></div>
+</div>
+<div id="block-block-41" class="ja-block block block-block  clearfix">
+
+  <h2><span>Join us on Facebook for     latest updates</span></h2>
+
+  <div class="block-content clearfix"><p><iframe src="./Wireless DC motor control circuit using RF module (434 MHz)_files/likebox.htm" style="border: medium none; overflow: hidden; width: 292px; height: 55px;" allowtransparency="true" scrolling="no" frameborder="0"></iframe></p></div>
+</div>
+<div id="block-block-43" class="ja-block block block-block  clearfix">
+
+
+  <div class="block-content clearfix"><p style="text-align: left;"><strong style="border-style: initial; border-color: initial; font-size: 15px; "><span style="border-style: initial; border-color: initial; font-size: 15px; color: rgb(128, 0, 0); ">Article of the week</span></strong></p><p style="text-align: left;">&nbsp;</p><p style="text-align: left;"><a href="http://www.engineersgarage.com/insight/how-electronic-ballast-works"><strong>How Electronic Ballast/Choke works</strong></a></p><hr><p style="text-align: left;"><a href="http://www.engineersgarage.com/submit"><strong><span style="color: rgb(128, 0, 0);">Post and Earn</span></strong></a></p><p style="text-align: left;"><font color="#800000"><b><br></b></font></p></div>
+</div>
+<div id="block-user-1" class="ja-block block block-user  clearfix">
+
+  <h2><span>Abdullah Tahir</span></h2>
+
+  <div class="block-content clearfix"><ul class="menu"><li class="leaf first"><a href="http://www.engineersgarage.com/invite">Invite a friend</a></li>
+<li class="leaf"><a href="http://www.engineersgarage.com/users/48592/abdullah-tahir">My account</a></li>
+<li class="collapsed"><a href="http://www.engineersgarage.com/node/add">Create content</a></li>
+<li class="leaf last"><a href="http://www.engineersgarage.com/logout">Log out</a></li>
+</ul></div>
+</div>
+<div id="block-block-24" class="ja-block block block-block  clearfix">
+
+  <h2><span>RF based Projects</span></h2>
+
+  <div class="block-content clearfix"><p><a href="http://www.engineersgarage.com/electronic-circuits/rf-module-based-wireless-remote"><span style="font-size: small;"><span style="font-family: Arial;">Wireless Remote</span></span></a></p><p><span style="font-size: small;"><span style="font-family: Arial;"><br></span></span></p><p><a href="http://www.engineersgarage.com/electronic-circuits/rf-based-intruder-alarm"><span style="font-size: small;"><span style="font-family: Arial;">Intruder Alarm</span></span></a></p><p><span style="font-size: small;"><span style="font-family: Arial;"><br></span></span></p><p><a href="http://www.engineersgarage.com/electronic-circuits/rf-based-fire-alarm"><span style="font-size: small;"><span style="font-family: Arial;">Fire Alarm (Overheat Alarm)</span></span></a><a href="http://www.engineersgarage.com/electronic-circuits/wireless-motor-control-rf"><span style="font-size: small;"><span style="font-family: Arial;"><br></span></span></a></p><p><span style="font-size: small;"><span style="font-family: Arial;"><br></span></span></p><p><span style="font-size: small;"><span style="font-family: Arial;"><a href="./Wireless DC motor control circuit using RF module (434 MHz)_files/Wireless DC motor control circuit using RF module (434 MHz).htm"><span style="font-size: small;">Wireless Motor Control</span></a></span></span><span style="font-size: small;"><span style="font-family: Arial;"><br></span></span><a href="http://www.engineersgarage.com/content/rf-module"></a></p></div>
+</div>
+ 				
+					</div>
+				
+								</div>
+											</div>
+			<!-- //LEFT COLUMN--> 
+						
+		</div>
+				</div>
+ 
+
+
+	</div>
+
+
+	</div>
+	<script type="text/javascript">
+	/*fix height for middle area columns*/
+	jQuery(window).load(function () {
+		jQuery('#ja-left, #ja-main, #ja-right').equalHeight();
+		fixHeight ('#ja-right1, #ja-right2', '#ja-right', '#ja-right-mass-top, #ja-right-mass-bottom');
+		fixHeight ('#ja-left1, #ja-left2', '#ja-left', '#ja-left-mass-top, #ja-left-mass-bottom');
+		fixHeight ('#ja-current-content', '#ja-inset1', '#ja-inset2, #ja-main', '#ja-content-mass-top','#ja-content-mass-bottom');
+		fixHeight ('#ja-content-main', '#ja-current-content, #ja-content-top', '#ja-content-bottom');
+	})
+</script>	<!-- //MAIN CONTAINER -->
+	
+	<div id="ja-navhelper" class="wrap">		
+
+
+	<div class="main">
+
+
+ 
+	<div class="main-inner1 clearfix">	 
+		<div class="ja-breadcrums">
+		<strong>You are here</strong><div class="breadcrumb"><a href="http://www.engineersgarage.com/">Home</a></div>	</div>
+		
+	<ul class="ja-links">
+		<li class="layout-switcher">&nbsp;</li>
+		<li class="top"><a href="http://www.engineersgarage.com/electronic-circuits/dc-motor-control-circuit-wireless-rf#Top" title="Back to Top">Top</a></li>
+	</ul>
+	
+	<ul class="no-display">
+		<li><a href="http:/#ja-content" title="Skip to content">Skip to content</a></li>
+	</ul>
+</div>
+ 
+
+
+	</div>
+
+
+</div>		
+<div id="ja-footer" class="wrap">		
+
+
+	<div class="main clearfix"><div class="ja-footnav">
+	<p><span style="font-family: Arial;">&nbsp;</span><span style="color: rgb(0, 0, 0);">Copyright                © 2011 EngineersGarage. All rights reserved. <a href="http://www.engineersgarage.com/privacy-policy"><u><span style="color: rgb(0, 0, 0);">Privacy Policy</span></u></a><br> </span></p></div>
+
+<div class="ja-copyright">
+	</div>
+</div>
+
+
+</div>		
+</div>
+
+
+
+</body><style id="apn-body-style">html {    padding-top: 34px ! important;     border-top: 1px solid transparent; }</style></html>

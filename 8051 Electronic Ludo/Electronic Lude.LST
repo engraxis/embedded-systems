@@ -1,0 +1,44 @@
+C51 COMPILER V9.03   ELECTRONIC_LUDE                                                       11/09/2003 15:48:30 PAGE 1   
+
+
+C51 COMPILER V9.03, COMPILATION OF MODULE ELECTRONIC_LUDE
+OBJECT MODULE PLACED IN Electronic Lude.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Electronic Lude.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          sbit check=P3^2;
+   3          unsigned int i;
+   4          void on_ex0() interrupt 0
+   5          {
+   6   1              while(check!=1);
+   7   1      }
+   8          void main(void)
+   9          {
+  10   1              IE=0x81;
+  11   1              P2=0x00;
+  12   1              while(1)
+  13   1              {
+  14   2                      P2++;
+  15   2                      for(i=1;i<=1000;i++);
+  16   2                      if(P2==6)
+  17   2                      {
+  18   3                              P2=0;
+  19   3                      }
+  20   2              }
+  21   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     44    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,21 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\abz\Desktop\High Voltage Engineers\Keypad & LCD\abz.uvproj
+Project File Date:  05/10/2013
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling abz.c...
+linking...
+Program Size: data=26.0 xdata=0 code=526
+creating hex file from "Load_into_Controller"...
+"Load_into_Controller" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling abz.c...
+linking...
+Program Size: data=25.0 xdata=0 code=516
+creating hex file from "Load_into_Controller"...
+"Load_into_Controller" - 0 Error(s), 0 Warning(s).

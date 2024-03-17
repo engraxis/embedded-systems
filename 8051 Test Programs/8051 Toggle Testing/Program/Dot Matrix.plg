@@ -1,0 +1,22 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\Engr. Abdullah Tahir\abz - LABORATORY\ALL PROJECTS\8051 Test Programs\8051 Toggle Testing\Program\Dot Matrix.uvproj
+Project File Date:  06/16/2012
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling Dot Matrix.c...
+linking...
+Program Size: data=13.0 xdata=0 code=79
+creating hex file from "Dot Matrix"...
+"Dot Matrix" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=13.0 xdata=0 code=79
+creating hex file from "Dot Matrix"...
+"Dot Matrix" - 0 Error(s), 0 Warning(s).
+compiling Dot Matrix.c...
+Dot Matrix.c - 0 Error(s), 0 Warning(s).

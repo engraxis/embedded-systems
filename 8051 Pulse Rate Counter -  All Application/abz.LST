@@ -1,0 +1,500 @@
+C51 COMPILER V9.03   ABZ                                                                   11/04/2003 00:09:39 PAGE 1   
+
+
+C51 COMPILER V9.03, COMPILATION OF MODULE ABZ
+OBJECT MODULE PLACED IN abz.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE abz.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          ///////////////////////////////////////////////////////////////////////////
+   2          #include <REGX51.H>
+   3          #define lcd P0
+   4          #define row P1
+   5          #define col P2
+   6          sbit rs=P1^5;
+   7          sbit rw=P1^6;
+   8          sbit en=P1^7;
+   9          sbit lcdbusy=P0^7;
+  10          sbit ready=P2^4;                                                //Green Ready
+  11          sbit busy=P2^5;                                                 //Red Busy
+  12          sbit high=P2^7;                                                 //Green High
+  13          sbit low=P2^6;                                                  //Red Low
+  14          sbit check=P3^2;
+  15          ////////////////////////////////// KEYPAD /////////////////////////////////
+  16          unsigned char keypad[4][3]={ '1', '2',  '3',
+  17                                                                   '4', '5', '6',
+  18                                                                   '7', '8', '9',
+  19                                                                   '*', '0', '#'  };
+  20          ////////////////////////////// LCD COMMANDS //////////////////////////////
+  21          void lcdcmd(unsigned char);
+  22          void lcddata(unsigned char);
+  23          void lcdready(void);
+  24          void lcd_pre(void);
+  25          void lcd_guide(void);
+  26          void option(void);
+  27          void manually(void);
+  28          void osc(void);
+  29          void kpad(void);
+  30          ///////////////////////////////// DELAY /////////////////////////////////
+  31          void delay(unsigned int);
+  32          /////////////////////////////// VARIABLES ///////////////////////////////
+  33          unsigned char a;                                                // Looping
+  34          unsigned int b;                                                 // Looping
+  35          unsigned char x;                                                // Storing Character
+  36          unsigned char p;                                                // Storing LCD Current Data #
+  37          unsigned char pulses;                                   // Storing Pulses
+  38          unsigned char d1,d2,d3,dec;
+  39          ///////////////////////////// MAIN FUNCTION /////////////////////////////
+  40          void on_pulse(void)     interrupt 0
+  41          {
+  42   1              pulses++;
+  43   1              dec=pulses/10;
+  44   1              d1=pulses%10;
+  45   1              d2=dec%10;
+  46   1              d3=dec/10;
+  47   1              d1=d1|0x30;
+  48   1              d2=d2|0x30;
+  49   1              d3=d3|0x30;
+  50   1      
+  51   1              lcdcmd(0x8A);
+  52   1              lcddata(d3);
+  53   1              lcddata(d2);
+  54   1              lcddata(d1);
+  55   1      
+C51 COMPILER V9.03   ABZ                                                                   11/04/2003 00:09:39 PAGE 2   
+
+  56   1              while(check==0)
+  57   1              {
+  58   2                      high=0;
+  59   2                      low=1;
+  60   2              }
+  61   1              high=1;
+  62   1              low=0;
+  63   1      }
+  64          //////////////////////////////////////////////////////
+  65          void main(void)
+  66          {
+  67   1              P1=0x00;
+  68   1              P2=0x00;
+  69   1              ///////////////////////////////
+  70   1              ready=0;
+  71   1              busy=1;
+  72   1              high=0;
+  73   1              low=0;
+  74   1              ////////////////////////////////
+  75   1              pulses=0;
+  76   1              ////////////////////////////////
+  77   1              IE=0x81;
+  78   1              lcdcmd(0x38);
+  79   1              lcdcmd(0x0C);
+  80   1              lcdcmd(0x01);
+  81   1              lcdcmd(0x06);
+  82   1              lcdcmd(0x82);
+  83   1              lcd_pre();
+  84   1              lcd_guide();
+  85   1              option();
+  86   1              kpad();
+  87   1              while(1);
+  88   1      }
+  89          /////////////////////////////////////////////////////////////////////////
+  90          void lcd_pre(void)
+  91          {
+  92   1              code unsigned char pre_data[]="-- Welcome --UET FSD MECHA-09Abdullah TahirHabib Sultan";
+  93   1              for (a=0;a<=12;a++)
+  94   1              {
+  95   2                      lcddata(pre_data[a]);                                   // --Welcome --
+  96   2              }       
+  97   1              delay(400);     
+  98   1              lcdcmd(0xC0);                                                           
+  99   1              for (a=13;a<=28;a++)
+ 100   1              {
+ 101   2                      lcddata(pre_data[a]);                                   // UET FSD MECHA-09
+ 102   2              }
+ 103   1      
+ 104   1              delay(1500);                                                    //////////////////////////////////////
+ 105   1              lcdcmd(0x01);
+ 106   1              lcdcmd(0x81);
+ 107   1              for (a=29;a<=42;a++)
+ 108   1              {
+ 109   2                      lcddata(pre_data[a]);                                   // Abdullah Tahir
+ 110   2              }
+ 111   1              lcdcmd(0xC2);
+ 112   1              for (a=43;a<=54;a++)
+ 113   1              {
+ 114   2                      lcddata(pre_data[a]);                                   // M Habib Sultan
+ 115   2              }
+ 116   1              delay(1500);                                                    //////////////////////////////////////
+ 117   1              return;
+C51 COMPILER V9.03   ABZ                                                                   11/04/2003 00:09:39 PAGE 3   
+
+ 118   1      }
+ 119          /////////////////////////////////////////////////////////////////////////
+ 120          void lcd_guide(void)
+ 121          {
+ 122   1              code unsigned char guide_data[]="-- Guide --Project can be ~used for counti-ng objects,people, eventsetc.
+             -";
+ 123   1              lcdcmd(0x01);
+ 124   1              lcdcmd(0x82);
+ 125   1              for(a=0;a<=10;a++)
+ 126   1              {
+ 127   2                      lcddata(guide_data[a]);                                 // -- Guide --
+ 128   2              }
+ 129   1              lcdcmd(0xC0);
+ 130   1              for(a=11;a<=26;a++)
+ 131   1              {
+ 132   2                      lcddata(guide_data[a]);                                 // Project can be ~
+ 133   2              }
+ 134   1      /////////////////////////////////////////////////////////////////////////////////////// 
+ 135   1              p=1;
+ 136   1              kpad(); 
+ 137   1      ///////////////////////////////////////////////////////////////////////////////////////
+ 138   1              lcdcmd(0x01);
+ 139   1              lcdcmd(0x80);
+ 140   1              for(a=27;a<=42;a++)
+ 141   1              {
+ 142   2                      lcddata(guide_data[a]);                                 // used for counti-
+ 143   2              }
+ 144   1              lcdcmd(0xC0);
+ 145   1              for(a=43;a<=53;a++)
+ 146   1              {
+ 147   2                      lcddata(guide_data[a]);                                 // ng objects,
+ 148   2              }
+ 149   1              lcdcmd(0xCF);
+ 150   1              lcddata('~');
+ 151   1      ///////////////////////////////////////////////////////////////////////////////////////
+ 152   1              p=1;
+ 153   1              kpad();
+ 154   1      ///////////////////////////////////////////////////////////////////////////////////////
+ 155   1              lcdcmd(0x01);
+ 156   1              lcdcmd(0x80);
+ 157   1              for(a=54;a<=67;a++)                                             // people, events
+ 158   1              {
+ 159   2                      lcddata(guide_data[a]);
+ 160   2              }
+ 161   1              lcdcmd(0xC0);
+ 162   1              for(a=68;a<=71;a++)
+ 163   1              {                                                                                       
+ 164   2                      lcddata(guide_data[a]);                                 // etc.
+ 165   2              }       
+ 166   1              lcdcmd(0xcf);
+ 167   1              lcddata('~');
+ 168   1      ///////////////////////////////////////////////////////////////////////////////////////
+ 169   1              p=1;
+ 170   1              kpad();
+ 171   1      ///////////////////////////////////////////////////////////////////////////////////////         
+ 172   1              return;
+ 173   1      }
+ 174          /////////////////////////////////////////////////////////////////////////
+ 175          void option(void)
+ 176          {
+ 177   1              code unsigned char option_data[]="1: Manually2: OSC/SEN";
+ 178   1              pulses=0;
+C51 COMPILER V9.03   ABZ                                                                   11/04/2003 00:09:39 PAGE 4   
+
+ 179   1              p=2;
+ 180   1              high=0;
+ 181   1              low=0;
+ 182   1              ready=0;
+ 183   1              busy=1;
+ 184   1              lcdcmd(0x01);
+ 185   1              lcdcmd(0x80);
+ 186   1              lcdcmd(0x01);
+ 187   1              lcdcmd(0x80);
+ 188   1              for(a=0;a<=10;a++)
+ 189   1              {
+ 190   2                      lcddata(option_data[a]);                                        // # of pulses
+ 191   2              }
+ 192   1              lcdcmd(0xC0);
+ 193   1              for(a=11;a<=20;a++)
+ 194   1              {
+ 195   2                      lcddata(option_data[a]);                                        // 1 for Motor 2 for RESET
+ 196   2              }
+ 197   1      ///////////////////////////////////////////////////////////////////////////////////////
+ 198   1              kpad();
+ 199   1      ///////////////////////////////////////////////////////////////////////////////////////
+ 200   1              return;
+ 201   1      }
+ 202          /////////////////////////////////////////////////////////////////////////
+ 203          void osc(void)
+ 204          {
+ 205   1              code unsigned char osc_data[]="Pulses=1:Manually 2:RST";
+ 206   1              p=4;
+ 207   1              
+ 208   1              high=0;
+ 209   1              low=0;
+ 210   1      
+ 211   1              lcdcmd(0x01);
+ 212   1              lcdcmd(0x80);
+ 213   1              for(a=0;a<=6;a++)
+ 214   1              {
+ 215   2                      lcddata(osc_data[a]);                                   // r/s= r/m=
+ 216   2              }
+ 217   1              lcdcmd(0xC0);
+ 218   1              for(a=7;a<=22;a++)
+ 219   1              {
+ 220   2                      lcddata(osc_data[a]);                                   // 2:RESET
+ 221   2              }
+ 222   1      ///////////////////////////////////////////////////////////////////////////////////////
+ 223   1              ready=1;
+ 224   1              high=1;
+ 225   1              busy=0;
+ 226   1              kpad();
+ 227   1      ///////////////////////////////////////////////////////////////////////////////////////
+ 228   1              return;
+ 229   1      }
+ 230          /////////////////////////////////////////////////////////////////////////
+ 231          void manually(void)
+ 232          {
+ 233   1              code unsigned char osc_data[]="Pulses =1:OSC/SEN 2:RST";
+ 234   1              p=3;
+ 235   1              
+ 236   1              high=0;
+ 237   1              low=0;
+ 238   1              
+ 239   1              lcdcmd(0x01);
+ 240   1              lcdcmd(0x80);
+C51 COMPILER V9.03   ABZ                                                                   11/04/2003 00:09:39 PAGE 5   
+
+ 241   1              for(a=0;a<=7;a++)
+ 242   1              {
+ 243   2                      lcddata(osc_data[a]);                                   // r/s= r/m=
+ 244   2              }
+ 245   1              lcdcmd(0xC0);
+ 246   1              for(a=8;a<=22;a++)
+ 247   1              {
+ 248   2                      lcddata(osc_data[a]);                                   // 2:RESET
+ 249   2              }
+ 250   1      ///////////////////////////////////////////////////////////////////////////////////////
+ 251   1              ready=1;
+ 252   1              high=1;
+ 253   1              busy=0;
+ 254   1      
+ 255   1              kpad();
+ 256   1      ///////////////////////////////////////////////////////////////////////////////////////
+ 257   1              return;
+ 258   1      }
+ 259          /////////////////////////////////////////////////////////////////////////
+ 260          void lcdcmd(unsigned char value)
+ 261          {
+ 262   1              lcdready();
+ 263   1              lcd=value;
+ 264   1              rs=0;
+ 265   1              rw=0;
+ 266   1              en=1;
+ 267   1              delay(50);
+ 268   1              en=0;
+ 269   1              return;
+ 270   1      }
+ 271          /////////////////////////////////////////////////////////////////////////
+ 272          void lcddata(unsigned char value)
+ 273          {
+ 274   1              lcdready();      
+ 275   1              lcd=value;
+ 276   1              rs=1;
+ 277   1              rw=0;
+ 278   1              en=1;
+ 279   1              delay(50);
+ 280   1              en=0;
+ 281   1              return;
+ 282   1      }
+ 283          /////////////////////////////////////////////////////////////////////////
+ 284          void lcdready(void)
+ 285          {
+ 286   1              lcdbusy=1;
+ 287   1              rs=0;
+ 288   1              rw=1;
+ 289   1              while(lcdbusy==1)
+ 290   1              {
+ 291   2                      en=0;
+ 292   2                      delay(50);
+ 293   2                      en=1;
+ 294   2              }       
+ 295   1              return;
+ 296   1      }
+ 297          /////////////////////////////////////////////////////////////////////////
+ 298          void kpad(void)
+ 299          {
+ 300   1              unsigned char c,r;
+ 301   1              col=0xff;
+ 302   1              
+C51 COMPILER V9.03   ABZ                                                                   11/04/2003 00:09:39 PAGE 6   
+
+ 303   1              if(p==1)
+ 304   1              {
+ 305   2                      high=0;
+ 306   2                      low=0;
+ 307   2                      ready=0;
+ 308   2                      busy=1; 
+ 309   2              }
+ 310   1      
+ 311   1              if(p==2)
+ 312   1              {
+ 313   2                      high=0;
+ 314   2                      low=0;
+ 315   2                      ready=0;
+ 316   2                      busy=1;
+ 317   2              }
+ 318   1              
+ 319   1              if(p==3 || p==4)
+ 320   1              {
+ 321   2                      ready=1;
+ 322   2                      high=1;
+ 323   2                      busy=0;
+ 324   2                      low=0;
+ 325   2              }
+ 326   1              
+ 327   1              
+ 328   1              
+ 329   1              while(1)
+ 330   1              {
+ 331   2                      do
+ 332   2                      {
+ 333   3                              row=0x00;
+ 334   3                              c=col;
+ 335   3                              c&=0x0f;
+ 336   3                      }               
+ 337   2                      while(c!=0x0f);
+ 338   2                      
+ 339   2                      do
+ 340   2                      {
+ 341   3                              do
+ 342   3                              {
+ 343   4                                      delay(20);
+ 344   4                                      c=col;
+ 345   4                                      c&=0x0f;
+ 346   4                              }
+ 347   3                              while(c==0x0f);
+ 348   3                              
+ 349   3                              delay(20);
+ 350   3                              c=col;
+ 351   3                              c&=0x0f;
+ 352   3                      }
+ 353   2                      while(c==0x0f);
+ 354   2      
+ 355   2                      while(1)
+ 356   2                      {
+ 357   3                              row=0xfe;
+ 358   3                              c=col;
+ 359   3                              c&=0x0f;
+ 360   3                              if(c!=0x0f)
+ 361   3                              {
+ 362   4                                      r=0;
+ 363   4                                      break;
+ 364   4                              }
+C51 COMPILER V9.03   ABZ                                                                   11/04/2003 00:09:39 PAGE 7   
+
+ 365   3      
+ 366   3                              row=0xfd;
+ 367   3                              c=col;
+ 368   3                              c&=0x0f;
+ 369   3                              if(c!=0x0f)
+ 370   3                              {
+ 371   4                                      r=1;
+ 372   4                                      break;
+ 373   4                              }
+ 374   3      
+ 375   3                              row=0xfb;
+ 376   3                              c=col;
+ 377   3                              c&=0x0f;
+ 378   3                              if(c!=0x0f)
+ 379   3                              {
+ 380   4                                      r=2;
+ 381   4                                      break;
+ 382   4                              }
+ 383   3      
+ 384   3                              row=0xf7;
+ 385   3                              c=col;
+ 386   3                              c&=0x0f;
+ 387   3                              r=3;
+ 388   3                              break;
+ 389   3      
+ 390   3                      }
+ 391   2              
+ 392   2                      if(c==0x0e)
+ 393   2                      {
+ 394   3                              x=keypad[r][0];
+ 395   3                      }
+ 396   2                      else if(c==0x0d)
+ 397   2                      {
+ 398   3                              x=keypad[r][1];
+ 399   3                      }
+ 400   2                      else if(c==0x0b)
+ 401   2                      {
+ 402   3                              x=keypad[r][2];
+ 403   3                      }
+ 404   2                      else
+ 405   2                      {
+ 406   3                              x=keypad[r][3];
+ 407   3                      }
+ 408   2                      /////////////////////////////////////////////////////////////////
+ 409   2                      if(p==1 && x=='#')
+ 410   2                      {
+ 411   3                                      return;
+ 412   3                      }
+ 413   2                      if(p==2)
+ 414   2                      {
+ 415   3                              if(x=='1')
+ 416   3                              {
+ 417   4                                      manually();
+ 418   4                                      return;
+ 419   4                              }
+ 420   3                              if(x=='2')
+ 421   3                              {
+ 422   4                                      osc();
+ 423   4                                      return;
+ 424   4                              }
+ 425   3                      }
+ 426   2                      if(p==3 || p==4)
+C51 COMPILER V9.03   ABZ                                                                   11/04/2003 00:09:39 PAGE 8   
+
+ 427   2                      {
+ 428   3                              if(x=='2')
+ 429   3                              {
+ 430   4                                      option();
+ 431   4                                      return;
+ 432   4                              }
+ 433   3                      }
+ 434   2                      if(p==3 && x=='1')
+ 435   2                      {
+ 436   3                              osc();
+ 437   3                              return;
+ 438   3                      }
+ 439   2                      if(p==4 && x=='1')
+ 440   2                      {
+ 441   3                              manually();
+ 442   3                              return;
+ 443   3                      }
+ 444   2              }
+ 445   1      }
+ 446          /////////////////////////////////////////////////////////////////////////
+ 447          void delay(unsigned int z)
+ 448          {       
+ 449   1              for(b=1;b<z;b++)
+ 450   1              {
+ 451   2                      TMOD=0X01;
+ 452   2                      TH0=0XFC;
+ 453   2                      TL0=0X66;
+ 454   2                      TR0=1;
+ 455   2                      while(TF0==0);
+ 456   2                      TR0=0;
+ 457   2                      TF0=0;                  
+ 458   2              }       
+ 459   1              return;
+ 460   1      
+ 461   1      }
+ 462          /////////////////////////////////////////////////////////////////////////
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1119    ----
+   CONSTANT SIZE    =    199    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     22       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

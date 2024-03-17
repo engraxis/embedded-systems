@@ -1,0 +1,11 @@
+Bar Graph and Buffer must be placed horizontally leveled.
+ULN2803's pins must be left unattached. 
+Components must be made to be placed at the board edges.
+7805 can be made to move more at the board edge.
+Serial Port's mechanical structure elements' pads should be made hexagonal.
+Push button's pads must be placed a bit more farther.
+Serial and Parallel Port must be move a bit more towards the board edge.
+Power led might be brought alone, clearly and effectively visible.
+Never ever forget to mark the rectangles around the components.
+Buffer Connection for Channel's direction selection must be corrected.
+Keypad SIP must also be introduced.

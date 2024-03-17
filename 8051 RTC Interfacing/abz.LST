@@ -1,0 +1,231 @@
+C51 COMPILER V9.03   ABZ                                                                   11/23/2003 19:32:24 PAGE 1   
+
+
+C51 COMPILER V9.03, COMPILATION OF MODULE ABZ
+OBJECT MODULE PLACED IN abz.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE abz.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          ///////////////////////////////////////////////////////////////////////////
+   2          #include <REGX51.H>
+   3          #include <absacc.h>
+   4          #define lcd P1
+   5          sbit rs=P3^4;
+   6          sbit rw=P3^3;
+   7          sbit en=P3^2;
+   8          sbit lcdbusy=P1^7;
+   9          ////////////////////////////// LCD COMMANDS //////////////////////////////
+  10          void lcdcmd(unsigned char);
+  11          void lcddata(unsigned char);
+  12          void lcdready(void);
+  13          void lcd_pre(void);
+  14          void time(void);
+  15          void bcdconv(unsigned char);
+  16          ///////////////////////////////// DELAY /////////////////////////////////
+  17          void delay(unsigned int);
+  18          /////////////////////////////// VARIABLES ///////////////////////////////
+  19          unsigned char a;                                                // Looping
+  20          unsigned int b;                                                 // Looping
+  21          unsigned char x;                                                // Storing Character
+  22          ///////////////////////////// MAIN FUNCTION /////////////////////////////
+  23          /////////////////////////////////////////////////////////////////////////
+  24          void main(void)
+  25          {
+  26   1              ////////////////////////////////
+  27   1              lcdcmd(0x38);
+  28   1              lcdcmd(0x0C);
+  29   1              lcdcmd(0x01);
+  30   1              lcdcmd(0x06);
+  31   1              lcdcmd(0x82);
+  32   1              //lcd_pre();
+  33   1              lcdcmd(0x01);
+  34   1              time();
+  35   1              while(1);
+  36   1      }
+  37          /////////////////////////////////////////////////////////////////////////
+  38          void lcd_pre(void)
+  39          {
+  40   1              code unsigned char pre_data[]="-- Welcome --UET FSD ELEC--09M AbdullahBilawalIrshad UllahJunaid";
+  41   1              for (a=0;a<=12;a++)
+  42   1              {
+  43   2                      lcddata(pre_data[a]);                                   // --Welcome --
+  44   2              }       
+  45   1              delay(400);     
+  46   1              lcdcmd(0xC0);                                                           
+  47   1              for (a=13;a<=28;a++)
+  48   1              {
+  49   2                      lcddata(pre_data[a]);                                   // UET FSD ELEC--09
+  50   2              }
+  51   1      
+  52   1              delay(1500);                                                    //////////////////////////////////////
+  53   1              lcdcmd(0x01);
+  54   1              lcdcmd(0x80);
+  55   1              for (a=29;a<=38;a++)
+C51 COMPILER V9.03   ABZ                                                                   11/23/2003 19:32:24 PAGE 2   
+
+  56   1              {
+  57   2                      lcddata(pre_data[a]);                                   // M Abdullah
+  58   2              }
+  59   1              lcdcmd(0xC0);
+  60   1              for (a=39;a<=45;a++)
+  61   1              {
+  62   2                      lcddata(pre_data[a]);                                   // Bilawal
+  63   2              }
+  64   1              delay(1500);                                                    //////////////////////////////////////
+  65   1              lcdcmd(0x01);
+  66   1      
+  67   1              for (a=46;a<=57;a++)
+  68   1              {
+  69   2                      lcddata(pre_data[a]);                                   // Irshad Ullah
+  70   2              }
+  71   1              lcdcmd(0xC0);
+  72   1              for (a=58;a<=63;a++)
+  73   1              {
+  74   2                      lcddata(pre_data[a]);                                   // Junaid
+  75   2              }
+  76   1              delay(1500);                                                    //////////////////////////////////////
+  77   1              return;
+  78   1      }
+  79          /////////////////////////////////////////////////////////////////////////
+  80          void lcdcmd(unsigned char value)
+  81          {
+  82   1              lcdready();
+  83   1              lcd=value;
+  84   1              rs=0;
+  85   1              rw=0;
+  86   1              en=1;
+  87   1              delay(50);
+  88   1              en=0;
+  89   1              return;
+  90   1      }
+  91          /////////////////////////////////////////////////////////////////////////
+  92          void lcddata(unsigned char value)
+  93          {
+  94   1              lcdready();      
+  95   1              lcd=value;
+  96   1              rs=1;
+  97   1              rw=0;
+  98   1              en=1;
+  99   1              delay(50);
+ 100   1              en=0;
+ 101   1              return;
+ 102   1      }
+ 103          /////////////////////////////////////////////////////////////////////////
+ 104          void lcdready(void)
+ 105          {
+ 106   1              lcdbusy=1;
+ 107   1              rs=0;
+ 108   1              rw=1;
+ 109   1              while(lcdbusy==1)
+ 110   1              {
+ 111   2                      en=0;
+ 112   2                      delay(50);
+ 113   2                      en=1;
+ 114   2              }       
+ 115   1              return;
+ 116   1      }
+ 117          /////////////////////////////////////////////////////////////////////////
+C51 COMPILER V9.03   ABZ                                                                   11/23/2003 19:32:24 PAGE 3   
+
+ 118          void time(void)
+ 119          {
+ 120   1              unsigned char hr,min,sec,yr,mo,day;
+ 121   1              XBYTE[10]=0X20;
+ 122   1              XBYTE[11]=0X83;
+ 123   1              XBYTE[4]=0X23;
+ 124   1              XBYTE[2]=0X59;
+ 125   1              XBYTE[0]=0X55;
+ 126   1              XBYTE[7]=0X09;
+ 127   1              XBYTE[8]=0X02;
+ 128   1              XBYTE[9]=0X12;
+ 129   1              
+ 130   1              lcdcmd(0xc3);
+ 131   1              day=XBYTE[7];
+ 132   1              yr=XBYTE[9];
+ 133   1              bcdconv(day);
+ 134   1              lcddata(0x20);
+ 135   1              lcddata('F');
+ 136   1              lcddata('E');
+ 137   1              lcddata('B');
+ 138   1              lcddata(0x20);
+ 139   1              lcddata('2');
+ 140   1              lcddata('0');
+ 141   1              bcdconv(yr);
+ 142   1      
+ 143   1              XBYTE[11]=0X03;
+ 144   1      
+ 145   1              while(1)
+ 146   1              {
+ 147   2                      lcdcmd(0x84);
+ 148   2                      XBYTE[10]=0X20;
+ 149   2                      delay(0x300);
+ 150   2                      hr=XBYTE[4];
+ 151   2                      delay(20);
+ 152   2                      min=XBYTE[2];
+ 153   2                      delay(20);                                              
+ 154   2                      sec=XBYTE[0];
+ 155   2                      delay(20);
+ 156   2                      bcdconv(hr);
+ 157   2              //      bcdconv(0x33);
+ 158   2                      lcddata(':');
+ 159   2                      bcdconv(min);
+ 160   2              //      bcdconv(0x56);
+ 161   2                      lcddata(':');
+ 162   2                      bcdconv(sec);
+ 163   2              //      bcdconv(0x49);
+ 164   2              }               
+ 165   1      }
+*** WARNING C280 IN LINE 120 OF abz.c: 'mo': unreferenced local variable
+ 166          /////////////////////////////////////////////////////////////////////////
+ 167          void bcdconv(unsigned char abz)
+ 168          {
+ 169   1              unsigned char Ax,Ay;
+ 170   1      
+ 171   1              Ax=0;
+ 172   1              Ay=0;   
+ 173   1      
+ 174   1              Ax=abz&0x0F;
+ 175   1              Ax=Ax|0x30;
+ 176   1      
+ 177   1              Ay=abz&0xF0;
+ 178   1              Ay=Ay>>4;
+C51 COMPILER V9.03   ABZ                                                                   11/23/2003 19:32:24 PAGE 4   
+
+ 179   1              Ay=Ay|0x30;
+ 180   1      
+ 181   1              lcddata(Ay);
+ 182   1              lcddata(Ax);
+ 183   1      
+ 184   1              return;
+ 185   1      }
+ 186          /////////////////////////////////////////////////////////////////////////
+ 187          void delay(unsigned int z)
+ 188          {       
+ 189   1              for(b=1;b<z;b++)
+ 190   1              {
+ 191   2                      TMOD=0X01;
+ 192   2                      TH0=0XFC;
+ 193   2                      TL0=0X66;
+ 194   2                      TR0=1;
+ 195   2                      while(TF0==0);
+ 196   2                      TR0=0;
+ 197   2                      TF0=0;                  
+ 198   2              }       
+ 199   1              return;
+ 200   1      }
+ 201          /////////////////////////////////////////////////////////////////////////
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    517    ----
+   CONSTANT SIZE    =     65    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4       8
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,40 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Documents and Settings\Administrator\Desktop\Pulse Rate Counter -  All Application\PRC.uvproj
+Project File Date:  10/31/2003
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling PRC.c...
+linking...
+*** WARNING L13: RECURSIVE CALL TO SEGMENT
+    SEGMENT: ?PR?KPAD?PRC
+    CALLER:  ?PR?OPTION?PRC
+*** WARNING L13: RECURSIVE CALL TO SEGMENT
+    SEGMENT: ?PR?KPAD?PRC
+    CALLER:  ?PR?OSC?PRC
+*** WARNING L13: RECURSIVE CALL TO SEGMENT
+    SEGMENT: ?PR?KPAD?PRC
+    CALLER:  ?PR?MANUALLY?PRC
+Program Size: data=29.0 xdata=0 code=1354
+creating hex file from "PRC"...
+"PRC" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L13: RECURSIVE CALL TO SEGMENT
+    SEGMENT: ?PR?KPAD?PRC
+    CALLER:  ?PR?OPTION?PRC
+*** WARNING L13: RECURSIVE CALL TO SEGMENT
+    SEGMENT: ?PR?KPAD?PRC
+    CALLER:  ?PR?OSC?PRC
+*** WARNING L13: RECURSIVE CALL TO SEGMENT
+    SEGMENT: ?PR?KPAD?PRC
+    CALLER:  ?PR?MANUALLY?PRC
+Program Size: data=29.0 xdata=0 code=1354
+creating hex file from "PRC"...
+"PRC" - 0 Error(s), 3 Warning(s).
+compiling PRC.c...
+PRC.c - 0 Error(s), 0 Warning(s).

@@ -1,0 +1,69 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\Engr. Abdullah Tahir\abz - LABORATORY\ALL PROJECTS\8051 Test Programs\8051 LCD Testing - Copy\CCD.uvproj
+Project File Date:  01/29/2013
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling Code.c...
+Code.c(28): error C141: syntax error near '='
+Code.c(29): error C141: syntax error near '='
+Code.c(48): error C141: syntax error near '}'
+Target not created
+Build target 'Target 1'
+compiling Code.c...
+Code.c(28): error C141: syntax error near '='
+Code.c(29): error C141: syntax error near '='
+Target not created
+Build target 'Target 1'
+compiling Code.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCDCMD?CODE
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCDDATA?CODE
+Program Size: data=16.0 xdata=0 code=169
+creating hex file from "Ele10"...
+"Ele10" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCDCMD?CODE
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCDDATA?CODE
+Program Size: data=16.0 xdata=0 code=169
+creating hex file from "Ele10"...
+"Ele10" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling Code.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCDCMD?CODE
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCDDATA?CODE
+Program Size: data=16.0 xdata=0 code=169
+creating hex file from "Ele10"...
+"Ele10" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling Code.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCDCMD?CODE
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCDDATA?CODE
+Program Size: data=16.0 xdata=0 code=171
+creating hex file from "Ele10"...
+"Ele10" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling Code.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCDCMD?CODE
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCDDATA?CODE
+Program Size: data=16.0 xdata=0 code=171
+creating hex file from "Ele10"...
+"Ele10" - 0 Error(s), 2 Warning(s).

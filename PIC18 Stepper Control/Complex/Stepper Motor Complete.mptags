@@ -1,0 +1,25 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.5.4	//
+!_TAG_REVISION_NAME	MCHPTags	//
+!_TAG_REVISION_VERSION	6.0.1	//
+ccw::PORTDbits.RD7	C:\Documents and Settings\Administrator\Desktop\Abdullah Tahir\Using PIC\Stepper.c	22;"	d	line:22	file:
+ccw_cmove	C:\Documents and Settings\Administrator\Desktop\Abdullah Tahir\Using PIC\Stepper.c	15;"	p	line:15	file:	signature:(void)
+ccw_cmove	C:\Documents and Settings\Administrator\Desktop\Abdullah Tahir\Using PIC\Stepper.c	278;"	f	line:278	signature:(void)
+ccw_move	C:\Documents and Settings\Administrator\Desktop\Abdullah Tahir\Using PIC\Stepper.c	168;"	f	line:168	signature:(void)
+ccw_move	C:\Documents and Settings\Administrator\Desktop\Abdullah Tahir\Using PIC\Stepper.c	17;"	p	line:17	file:	signature:(void)
+ccwc::PORTDbits.RD5	C:\Documents and Settings\Administrator\Desktop\Abdullah Tahir\Using PIC\Stepper.c	20;"	d	line:20	file:
+cw::PORTDbits.RD6	C:\Documents and Settings\Administrator\Desktop\Abdullah Tahir\Using PIC\Stepper.c	21;"	d	line:21	file:
+cw_cmove	C:\Documents and Settings\Administrator\Desktop\Abdullah Tahir\Using PIC\Stepper.c	14;"	p	line:14	file:	signature:(void)
+cw_cmove	C:\Documents and Settings\Administrator\Desktop\Abdullah Tahir\Using PIC\Stepper.c	363;"	f	line:363	signature:(void)
+cw_move	C:\Documents and Settings\Administrator\Desktop\Abdullah Tahir\Using PIC\Stepper.c	16;"	p	line:16	file:	signature:(void)
+cw_move	C:\Documents and Settings\Administrator\Desktop\Abdullah Tahir\Using PIC\Stepper.c	58;"	f	line:58	signature:(void)
+cwc::PORTDbits.RD4	C:\Documents and Settings\Administrator\Desktop\Abdullah Tahir\Using PIC\Stepper.c	19;"	d	line:19	file:
+delay	C:\Documents and Settings\Administrator\Desktop\Abdullah Tahir\Using PIC\Stepper.c	13;"	p	line:13	file:	signature:(void)
+delay	C:\Documents and Settings\Administrator\Desktop\Abdullah Tahir\Using PIC\Stepper.c	448;"	f	line:448	signature:(void)
+main	C:\Documents and Settings\Administrator\Desktop\Abdullah Tahir\Using PIC\Stepper.c	27;"	f	line:27	signature:(void)
+pos	C:\Documents and Settings\Administrator\Desktop\Abdullah Tahir\Using PIC\Stepper.c	25;"	v	line:25
+steps	C:\Documents and Settings\Administrator\Desktop\Abdullah Tahir\Using PIC\Stepper.c	24;"	v	line:24

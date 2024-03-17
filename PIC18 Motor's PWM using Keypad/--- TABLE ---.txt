@@ -1,0 +1,14 @@
+Frequency = 1 kHz
+
+0 : Stop, Inertial Stop, 0% DC
+1 : Start, Default = 100% DC & CW
+2 : CCW
+3 : CW
+4 : Force Stop
+5 : Level 1 = 10% DC 
+6 : Level 2 = 30% DC
+7 : Level 3 = 50% DC
+8 : Level 4 = 70% DC
+9 : Level 5 = 90% DC
+* : NOT IN USE
+# : NOT IN USE

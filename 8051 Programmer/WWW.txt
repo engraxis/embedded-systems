@@ -1,0 +1,2 @@
+//Programmer 8051 USB
+http://www.8051projects.info/content/8051-tools/14-usb-8051-avr-programmer.html

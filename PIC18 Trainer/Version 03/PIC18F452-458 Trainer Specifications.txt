@@ -1,0 +1,19 @@
+MICROCHIP's PIC18F452/458 TRAINER by ABDULLAH TAHIR - 2009MC106 UET, FSD Campus
+===============================================================================
+(With built-in peripherals on one board)
+
+Product Specifications:
+
+0.  Dimensions : 27.25 x 11.2 cm
+1.  Bar Graph can be attached with any Port, one port at a time. Attached buffer will help not to disturb the signal.
+2.  All Port pins are at one place, in ascending or decending manner.
+3.  LCD Interfacing provision available. Only attach jumpers with respective pins.
+4.  ULN 2803 Darlington Pair Transistor Array for driving DC or Stepper Motor(s), attached with Port D. Attach external supply (user defined).
+5.  Serial communication provision is available, attach jumpers with Rx & Tx and start communicating.
+6.  LM339 Differential Comparator is available with unattached O/P pins for sensor(s) interfacing.
+    These O/P pins are left unattached so that they may be interfaced with external interrupt pins when required, with jumpers.
+7.  DB25 (parallel port) is available. Attach jumper with any port and start Parallel Communication.
+8.  No need for checking polarity of Input Voltages.
+9.  Extra 5V point with VR is also available.
+10. All (Jumpers, LCD, RTC, Sensors and all external I/P and or O/P interfacing) designed as Plug and Play Devices.
+11. PICKit 2/PICKit 3 ICSP available.

@@ -1,0 +1,199 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        06/21/2012  12:12:58  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE Code.obj TO Programming CODE (0X0000-0X0FFF)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  Code.obj (CODE)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  Programming (CODE)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0001H     UNIT         ?DT?CODE
+            IDATA   0009H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0054H     UNIT         ?PR?DELAY?CODE
+            CODE    0057H     0037H     UNIT         ?PR?MAIN?CODE
+            CODE    008EH     0032H     UNIT         ?PR?CCWFUN?CODE
+            CODE    00C0H     001CH     UNIT         ?PR?CWFUN?CODE
+            CODE    00DCH     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   Programming (CODE)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?CODE
+
+?PR?MAIN?CODE
+  +--> ?PR?CWFUN?CODE
+  +--> ?PR?CCWFUN?CODE
+
+?PR?CWFUN?CODE
+  +--> ?PR?DELAY?CODE
+
+?PR?CCWFUN?CODE
+  +--> ?PR?DELAY?CODE
+
+
+
+SYMBOL TABLE OF MODULE:  Programming (CODE)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/21/2012  12:12:58  PAGE 2
+
+
+
+  -------         MODULE        CODE
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  C:008EH         PUBLIC        ccwfun
+  C:0003H         PUBLIC        delay
+  B:00A0H.6       PUBLIC        cwled
+  D:0008H         PUBLIC        speed
+  C:00C0H         PUBLIC        cwfun
+  C:0057H         PUBLIC        main
+  B:0090H.3       PUBLIC        dec
+  D:0089H         PUBLIC        TMOD
+  B:0090H.2       PUBLIC        inc
+  B:0090H.1       PUBLIC        ccw
+  B:0088H.5       PUBLIC        TF0
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  B:0088H.4       PUBLIC        TR0
+  B:0090H.0       PUBLIC        cw
+  B:00A0H.7       PUBLIC        ccwled
+  -------         PROC          MAIN
+  C:0057H         LINE#         16
+  C:0057H         LINE#         17
+  C:0057H         LINE#         18
+  C:0060H         LINE#         19
+  C:0063H         LINE#         20
+  C:0067H         LINE#         21
+  C:0067H         LINE#         22
+  C:0067H         LINE#         23
+  C:0073H         LINE#         24
+  C:0073H         LINE#         25
+  C:0076H         LINE#         26
+  C:007AH         LINE#         27
+  C:007AH         LINE#         28
+  C:0080H         LINE#         29
+  C:0083H         LINE#         30
+  C:0089H         LINE#         31
+  C:008CH         LINE#         32
+  -------         ENDPROC       MAIN
+  -------         PROC          DELAY
+  C:0003H         LINE#         35
+  C:0003H         LINE#         36
+  C:0003H         LINE#         37
+  C:0006H         LINE#         39
+  C:000DH         LINE#         40
+  C:0010H         LINE#         41
+  C:0017H         LINE#         42
+  C:001AH         LINE#         44
+  C:001FH         LINE#         45
+  C:001FH         LINE#         46
+  C:0022H         LINE#         47
+  C:0024H         LINE#         48
+  C:0024H         LINE#         49
+  C:0029H         LINE#         50
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/21/2012  12:12:58  PAGE 3
+
+
+  C:0029H         LINE#         51
+  C:002CH         LINE#         52
+  C:002EH         LINE#         53
+  C:002EH         LINE#         54
+  C:0033H         LINE#         55
+  C:0033H         LINE#         56
+  C:0036H         LINE#         57
+  C:0039H         LINE#         58
+  C:0039H         LINE#         59
+  C:003EH         LINE#         60
+  C:003EH         LINE#         61
+  C:0041H         LINE#         62
+  C:0043H         LINE#         63
+  C:0043H         LINE#         64
+  C:0048H         LINE#         65
+  C:0048H         LINE#         66
+  C:004BH         LINE#         67
+  C:004DH         LINE#         68
+  C:004DH         LINE#         71
+  C:004FH         LINE#         72
+  C:0052H         LINE#         73
+  C:0054H         LINE#         74
+  C:0056H         LINE#         76
+  -------         ENDPROC       DELAY
+  -------         PROC          CWFUN
+  C:00C0H         LINE#         78
+  C:00C0H         LINE#         79
+  C:00C0H         LINE#         80
+  C:00C2H         LINE#         81
+  C:00C5H         LINE#         82
+  C:00C5H         LINE#         83
+  C:00C8H         LINE#         84
+  C:00CEH         LINE#         85
+  C:00D3H         LINE#         86
+  C:00D3H         LINE#         87
+  C:00D6H         LINE#         88
+  C:00D9H         LINE#         89
+  C:00D9H         LINE#         90
+  C:00DBH         LINE#         92
+  -------         ENDPROC       CWFUN
+  -------         PROC          CCWFUN
+  C:008EH         LINE#         123
+  C:008EH         LINE#         124
+  C:008EH         LINE#         125
+  C:0090H         LINE#         126
+  C:0092H         LINE#         127
+  C:0095H         LINE#         128
+  C:0095H         LINE#         129
+  C:0098H         LINE#         130
+  C:009BH         LINE#         131
+  C:009EH         LINE#         132
+  C:00A1H         LINE#         133
+  C:00A4H         LINE#         134
+  C:00A7H         LINE#         135
+  C:00AAH         LINE#         136
+  C:00ADH         LINE#         138
+  C:00B0H         LINE#         139
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/21/2012  12:12:58  PAGE 4
+
+
+  C:00B0H         LINE#         140
+  C:00B3H         LINE#         141
+  C:00B5H         LINE#         142
+  C:00B5H         LINE#         143
+  C:00B8H         LINE#         144
+  C:00B8H         LINE#         145
+  C:00BBH         LINE#         146
+  C:00BDH         LINE#         147
+  C:00BDH         LINE#         148
+  C:00BFH         LINE#         150
+  -------         ENDPROC       CCWFUN
+  -------         ENDMOD        CODE
+
+Program Size: data=10.0 xdata=0 code=232
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

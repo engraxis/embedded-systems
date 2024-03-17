@@ -1,0 +1,7 @@
+Connector	Stepper
+
+Red			Red
+Black 			Yellow
+Yellow			Blue
+White 			Green
+Green			White + Black

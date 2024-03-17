@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0022)http://www.libusb.org/ -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+      libusb
+    </title>
+    
+    <!--[if IE]><script type="text/javascript">window.location.hash = window.location.hash;</script><![endif]-->
+        <link rel="search" href="http://www.libusb.org/search">
+        <link rel="help" href="http://www.libusb.org/wiki/TracGuide">
+        <link rel="alternate" href="http://www.libusb.org/wiki/WikiStart?format=txt" type="text/x-trac-wiki" title="Plain Text">
+        <link rel="start" href="http://www.libusb.org/wiki">
+        <link rel="stylesheet" href="./libusb_files/trac.css" type="text/css"><link rel="stylesheet" href="http://www.libusb.org/chrome/common/css/wiki.css" type="text/css">
+        <link rel="shortcut icon" href="http://www.libusb.org/chrome/common/trac.ico" type="image/x-icon">
+        <link rel="icon" href="http://www.libusb.org/chrome/common/trac.ico" type="image/x-icon">
+      <link type="application/opensearchdescription+xml" rel="search" href="http://www.libusb.org/search/opensearch" title="Search libusb">
+      <script type="text/javascript" charset="utf-8" src="http://www.libusb.org/chrome/common/js/jquery.js"></script>
+      <script type="text/javascript" charset="utf-8" src="http://www.libusb.org/chrome/common/js/babel.js"></script>
+      <script type="text/javascript" charset="utf-8" src="http://www.libusb.org/chrome/common/js/trac.js"></script>
+      <script type="text/javascript" charset="utf-8" src="http://www.libusb.org/chrome/common/js/search.js"></script>
+      <script type="text/javascript" charset="utf-8" src="./libusb_files/folding.js"></script>
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $("#content").find("h1,h2,h3,h4,h5,h6").addAnchor(_("Link to this section"));
+        $("#content").find(".wikianchor").each(function() {
+          $(this).addAnchor(babel.format(_("Link to #%(id)s"), {id: $(this).attr('id')}));
+        });
+        $(".foldable").enableFolding(true, true);
+      });
+    </script>
+  <script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/document_iterator.js"></script><script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/find_proxy.js"></script><script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/get_html_text.js"></script><script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/global_constants.js"></script><script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/name_injection_builder.js"></script><script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/number_injection_builder.js"></script><script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/string_finder.js"></script><script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/change_sink.js"></script><meta name="document_iterator.js"><meta name="find_proxy.js"><meta name="get_html_text.js"><meta name="global_constants.js"><meta name="name_injection_builder.js"><meta name="number_injection_builder.js"><meta name="string_finder.js"><meta name="change_sink.js"><style id="wrc-middle-css" type="text/css">.wrc_whole_window{	display: none;	position: fixed; 	z-index: 2147483647;	background-color: rgba(40, 40, 40, 0.9);	word-spacing: normal;	margin: 0px;	padding: 0px;	border: 0px;	left: 0px;	top: 0px;	width: 100%;	height: 100%;	line-height: normal;	letter-spacing: normal;}.wrc_middle_main {	font-family: Segoe UI, Arial Unicode MS, Arial, Sans-Serif;	font-size: 14px;	width: 600px;	height: auto;	margin: 0px auto;	margin-top: 15%;    background: url(chrome-extension://icmlaeflemplmjndnaapfdbbnpncnbda/skin/images/background-body.jpg) repeat-x left top;	background-color: rgb(39, 53, 62);}.wrc_middle_logo {    background: url(chrome-extension://icmlaeflemplmjndnaapfdbbnpncnbda/skin/images/logo.jpg) no-repeat left bottom;    width: 140px;    height: 42px;    color: orange;    display: table-cell;    text-align: right;    vertical-align: middle;}.wrc_icon_warning {	margin: 20px 10px 20px 15px;	float: left;	background-color: transparent;}.wrc_middle_title {    color: #b6bec7;	height: auto;    margin: 0px auto;	font-size: 2.2em;	white-space: nowrap;	text-align: center;}.wrc_middle_hline {    height: 2px;	width: 100%;    display: block;}.wrc_middle_description {	text-align: center;	margin: 15px;	font-size: 1.4em;	padding: 20px;	height: auto;	color: white;	min-height: 3.5em;}.wrc_middle_actions_main_div {	margin-bottom: 15px;	text-align: center;}.wrc_middle_actions_blue_button {	-moz-appearance: none;	border-radius: 7px;	-moz-border-radius: 7px/7px;	border-radius: 7px/7px;	background-color: rgb(0, 173, 223) !important;	display: inline-block;	width: auto;	cursor: Pointer;	border: 2px solid #00dddd;}.wrc_middle_actions_blue_button:hover {	background-color: rgb(0, 159, 212) !important;}.wrc_middle_actions_blue_button:active {	background-color: rgb(0, 146, 200) !important;	border: 2px solid #00aaaa;}.wrc_middle_actions_blue_button div {	display: inline-block;	width: auto;	cursor: Pointer;	margin: 3px 10px 3px 10px;	color: white;	font-size: 1.2em;	font-weight: bold;}.wrc_middle_action_low {	font-size: 0.9em;	white-space: nowrap;	cursor: Pointer;	color: grey !important;	margin: 10px 10px 0px 10px;	text-decoration: none;}.wrc_middle_action_low:hover {	color: #aa4400 !important;}.wrc_middle_actions_rest_div {	padding-top: 5px;	white-space: nowrap;	text-align: center;}.wrc_middle_action {	white-space: nowrap;	cursor: Pointer;	color: red !important;	font-size: 1.2em;	margin: 10px 10px 0px 10px;	text-decoration: none;}.wrc_middle_action:hover {	color: #aa4400 !important;}</style><script id="wrc-script-middle_window" type="text/javascript" language="JavaScript">var g_inputsCnt = 0;var g_InputThis = new Array(null, null, null, null);var g_alerted = false;/* we test the input if it includes 4 digits   (input is a part of 4 inputs for filling the credit-card number)*/function is4DigitsCardNumber(val){	var regExp = new RegExp('[0-9]{4}');	return (val.length == 4 && val.search(regExp) == 0);}/* testing the whole credit-card number 19 digits devided by three '-' symbols or   exactly 16 digits without any dividers*/function isCreditCardNumber(val){	if(val.length == 19)	{		var regExp = new RegExp('[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}');		return (val.search(regExp) == 0);	}	else if(val.length == 16)	{		var regExp = new RegExp('[0-9]{4}[0-9]{4}[0-9]{4}[0-9]{4}');		return (val.search(regExp) == 0);	}	return false;}function CheckInputOnCreditNumber(self){	if(g_alerted)		return false;	var value = self.value;	if(self.type == 'text')	{		if(is4DigitsCardNumber(value))		{			var cont = true;			for(i = 0; i < g_inputsCnt; i++)				if(g_InputThis[i] == self)					cont = false;			if(cont && g_inputsCnt < 4)			{				g_InputThis[g_inputsCnt] = self;				g_inputsCnt++;			}		}		g_alerted = (g_inputsCnt == 4);		if(g_alerted)			g_inputsCnt = 0;		else			g_alerted = isCreditCardNumber(value);	}	return g_alerted;}function CheckInputOnPassword(self){	if(g_alerted)		return false;	var value = self.value;	if(self.type == 'password')	{		g_alerted = (value.length > 0);	}	return g_alerted;}function onInputBlur(self, bRatingOk, bFishingSite){	var bCreditNumber = CheckInputOnCreditNumber(self);	var bPassword = CheckInputOnPassword(self);	if((!bRatingOk || bFishingSite == 1) && (bCreditNumber || bPassword) )	{		var warnDiv = document.getElementById("wrcinputdiv");		if(warnDiv)		{			/* show the warning div in the middle of the screen */			warnDiv.style.left = "0px";			warnDiv.style.top = "0px";			warnDiv.style.width = "100%";			warnDiv.style.height = "100%";			document.getElementById("wrc_warn_fs").style.display = 'none';			document.getElementById("wrc_warn_cn").style.display = 'none';			if(bFishingSite)				document.getElementById("wrc_warn_fs").style.display = 'block';			else				document.getElementById("wrc_warn_cn").style.display = 'block';			warnDiv.style.display = 'block';		}	}}</script></head><link id="apn-null-stylesheet" rel="stylesheet" href="chrome-extension://aaaaoggiphohkihibdkcnhnokmkfmhnj/config/skin/css/containers.css"><iframe id="apn-null-toolbar" src="./libusb_files/toolbar.htm" class="apn-toolbar SkipThisFixedPosition" style="top: 0px;"></iframe>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <h1><a href="./libusb_files/libusb.htm">libusb</a></h1>
+      </div>
+      <form id="search" action="http://www.libusb.org/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="">
+          <input type="submit" value="Search">
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="http://www.libusb.org/login">Login</a></li><li><a href="http://www.libusb.org/openidlogin">OpenID Login</a></li><li><a href="http://www.libusb.org/prefs">Preferences</a></li><li><a href="http://www.libusb.org/wiki/TracGuide">Help/Guide</a></li><li><a href="http://www.libusb.org/about">About Trac</a></li><li class="last"><a href="http://www.libusb.org/register">Register</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first active"><a href="http://www.libusb.org/wiki">Wiki</a></li><li><a href="http://www.libusb.org/timeline">Timeline</a></li><li><a href="http://www.libusb.org/roadmap">Roadmap</a></li><li><a href="http://www.libusb.org/browser">Browse Source</a></li><li><a href="http://www.libusb.org/report">View Tickets</a></li><li class="last"><a href="http://www.libusb.org/search">Search</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="pagepath" class="noprint">
+  <a class="pathentry first" title="View WikiStart" href="http://www.libusb.org/wiki">wiki:</a><a class="pathentry" href="http://www.libusb.org/wiki/WikiStart" title="View WikiStart">WikiStart</a>
+</div>
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+              <li class="first"><a href="http://www.libusb.org/wiki/WikiStart">Start Page</a></li><li><a href="http://www.libusb.org/wiki/TitleIndex">Index</a></li><li class="last"><a href="http://www.libusb.org/wiki/WikiStart?action=history">History</a></li>
+          </ul>
+        <hr>
+      </div>
+    <div id="content" class="wiki">
+      <div class="wikipage searchable">
+        
+          
+          <div class="trac-modifiedby">
+            <span><a href="http://www.libusb.org/wiki/WikiStart?action=diff&version=39" title="Version 39 by xiaofan: Clarify driver support for Windows and OpenBSD/NetBSD">Last modified</a> <a class="timeline" href="http://www.libusb.org/timeline?from=2012-04-21T02%3A38%3A18%2B02%3A00&precision=second" title="See timeline at 04/21/12 02:38:18">4 weeks ago</a></span>
+            <span class="trac-print">Last modified on 04/21/12 02:38:18</span>
+          </div>
+          <div id="wikipage"><h1 id="libusb">libusb</h1>
+<p>
+</p><div class="wiki-toc"><h4>libusb</h4>
+    <ol>
+      <li>
+        <a href="http://www.libusb.org/#Welcome">Welcome</a>
+      </li>
+      <li>
+        <a href="http://www.libusb.org/#Versionoverview">Version overview</a>
+      </li>
+      <li>
+        <a href="http://www.libusb.org/#CurrentAPIversion:libusb-1.0">Current API version: libusb-1.0</a>
+      </li>
+      <li>
+        <a href="http://www.libusb.org/#LegacyAPI:libusb-0.1">Legacy API: libusb-0.1</a>
+      </li>
+      <li>
+        <a href="http://www.libusb.org/#Support">Support</a>
+      </li>
+      <li>
+        <a href="http://www.libusb.org/#Bugsandfeaturerequests">Bugs and feature requests</a>
+      </li>
+      <li>
+        <a href="http://www.libusb.org/#Related">Related</a>
+      </li>
+      <li>
+        <a href="http://www.libusb.org/#LicenseoftheWikiContent">License of the Wiki Content</a>
+      </li>
+    </ol>
+</div><p>
+</p>
+<h2 id="Welcome">Welcome</h2>
+<p>
+libusb is a C library which gives applications easy access to USB devices on many different operating systems. libusb is an open source project, the code is licensed under the <a class="ext-link" href="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html"><span class="icon">​</span>GNU Lesser General Public License version 2.1</a>.
+</p>
+<h2 id="Versionoverview">Version overview</h2>
+<p>
+There are two libusb API versions:
+</p>
+<ul><li><a class="wiki" href="http://www.libusb.org/wiki/libusb-1.0">libusb-1.0</a> is the current version, under active development
+</li><li>libusb-0.1 is the original version which is deprecated and unmaintained since many years
+<ul><li>libusb-compat-0.1 is a compatibility library which provides the libusb-0.1 API by using libusb-1.0
+</li></ul></li></ul><p>
+The different API versions do not conflict, so they can be installed in parallell on a system. However, if you have installed libusb-1.0 then we strongly recommend to use libusb-compat-0.1 instead of the ancient libusb-0.1 code, so that programs which use both the 0.1 API and the 1.0 API in different parts of the program, or in different libraries used by the program, will both end up using libusb-1.0 for actual device access. This is important to avoid potential conflicts between libusb-1.0 and libusb-0.1 being used <em>by the same process</em>.
+</p>
+<p>
+In addition to the above libraries by the libusb project there is also a separate project which provides the libusb-0.1 API on Windows:
+</p>
+<ul><li><a class="wiki" href="http://www.libusb.org/wiki/libusb-win32">libusb-win32</a> (It is a separate project, but several contributors participate in both libusb and libusb-win32.)
+</li></ul><h2 id="CurrentAPIversion:libusb-1.0">Current API version: libusb-1.0</h2>
+<p>
+Daniel Drake adopted the project in January 2008 and worked on the <a class="wiki" href="http://www.libusb.org/wiki/libusb-1.0">libusb-1.0</a> API and implementation, which adds several features missing in the 0.1 API. libusb-1.0 is the recommended version to use for all new development. Developers are encouraged to port existing applications which use libusb-0.1 to use the new API.
+</p>
+<ul><li>Latest release: <strong><a class="ext-link" href="http://sourceforge.net/projects/libusb/files/libusb-1.0/libusb-1.0.9/libusb-1.0.9.tar.bz2/download"><span class="icon">​</span>1.0.9</a></strong>
+</li><li><em>See the <a class="wiki" href="http://www.libusb.org/wiki/libusb-1.0">libusb-1.0</a> page for more detailed information about libusb-1.0</em>
+</li><li><a class="ext-link" href="http://libusb.sourceforge.net/api-1.0/" title=" in api-1.0"><span class="icon">​</span>libusb-1.0 API documentation</a>
+</li><li>Linux, Mac OS X, <a class="wiki" href="http://www.libusb.org/wiki/windows_backend">Windows</a>, OpenBSD and NetBSD are currently supported.
+</li><li>FreeBSD includes a separate implementation of the libusb-0.1 and libusb-1.0 APIs in the system libc.
+</li><li>The <a class="wiki" href="http://www.libusb.org/wiki/windows_backend">Windows backend</a> currently depends on the generic USB device driver WinUSB.sys by Microsoft, which is included with all Windows versions starting with Windows Vista. There is <a class="accepted ticket" href="http://www.libusb.org/ticket/49" title="enhancement: libusb-win32 device driver (libusb0.sys) backend (accepted)">a ticket</a> about support for the libusb0.sys kernel driver developed by the libusb-win32 project.
+</li></ul><p>
+A device driver which supports libusb must always be used for the device on every operating system. Each operating system has different rules for device drivers. On Mac OS X, if an interface driver included with the OS matches the characteristics of a device, that driver will seize the interface, and the driver cannot be detached by libusb, so libusb will not be able to use that interface. In the case of OpenBSD and NetBSD, libusb-1.0 can be used only for device with ugen driver. For Windows, if you need to read from or write to the USB device, currently only devices with WinUSB driver are supported.
+</p>
+<p>
+libusb is not well suited for accessing HID class devices. It is possible to use libusb with HID device though if the original driver is replaced by a supported driver but this is usually not easy on non-Linux platforms. It is recommended to use <a class="ext-link" href="http://www.signal11.us/oss/hidapi/"><span class="icon">​</span>HIDAPI</a> instead, for convenient and cross-platform access to HID class devices.
+</p>
+<h2 id="LegacyAPI:libusb-0.1">Legacy API: libusb-0.1</h2>
+<p>
+Johannes Erdfelt founded the libusb project and lead development through 2007. By then, libusb-0.1 had stabilized, and was adopted by a wide range of projects.
+</p>
+<ul><li>Last release: <a class="ext-link" href="http://sourceforge.net/project/showfiles.php?group_id=1674&package_id=1632&release_id=398442"><span class="icon">​</span>libusb-0.1.12</a>
+</li><li>Supported operating systems: Linux, FreeBSD, NetBSD, OpenBSD, Darwin, MacOS X (and Windows, through the <a class="wiki" href="http://www.libusb.org/wiki/libusb-win32">libusb-win32</a> project). Solaris has a <a class="ext-link" href="http://cvs.opensolaris.org/source/xref/userland/src/components/libusb/"><span class="icon">​</span>wrapper for libusb-0.1</a> as well. There are also independent implementation efforts for other OS like BeOS and OS/2 which may not be mature enough.
+</li><li>Development status: libusb-0.1 is deprecated and will have no further changes or releases
+</li><li>Note that <a class="wiki" href="http://www.libusb.org/wiki/libusb-win32">libusb-win32</a> is a separate project which still sees active development. The next generation libusb-win32 kernel driver (libusbk.sys) is based on KMDF. The <a class="ext-link" href="http://sourceforge.net/projects/libusbk/"><span class="icon">​</span>libusbk</a> library will support the existing libusb-win32 API, libusb-1.0 API and WinUSB-like API. libusb-win32 users who are fine with the libusb-win32 API are recommended to keep using it since it will be supported by the libusb-win32 project. libusb-win32 users who are interested in libusb-1.0 will also be supported once the libusbk backend is integrated. Future enhancement of the libusb-1.0 API (say libusb-1.1) may be required to be more suitable for Windows users.
+</li><li><a class="ext-link" href="http://sourceforge.net/project/showfiles.php?group_id=1674"><span class="icon">​</span>Download libusb-0.1 releases here</a>
+</li><li><a class="ext-link" href="http://libusb.sourceforge.net/doc/" title=" in doc-0.1"><span class="icon">​</span>libusb-0.1 API documentation</a>
+</li><li><a class="ext-link" href="http://sourceforge.net/apps/trac/libusb-win32/wiki/libusbwin32_examples" title="libusbwin32_examples in libusb-win32"><span class="icon">​</span>Unofficial bindings</a> at the libusb-win32 site
+</li><li><a class="ext-link" href="http://sourceforge.net/apps/trac/libusb-win32/wiki/libusbwin32_examples" title="libusbwin32_examples in libusb-win32"><span class="icon">​</span>Projects and Examples using libusb-win32</a>
+</li></ul><h2 id="Support">Support</h2>
+<p>
+Please read the <a class="wiki" href="http://www.libusb.org/wiki/FAQ">FAQ (Frequently Asked Questions)</a> page to see if your question has already been answered.
+</p>
+<p>
+Please ask unanswered questions on the <a class="wiki" href="http://www.libusb.org/wiki/MailingList">mailing list</a> or in the <a class="wiki" href="http://www.libusb.org/wiki/IRC">IRC channel</a>. Remember to search for an answer on your own, before asking others for help.
+</p>
+<h2 id="Bugsandfeaturerequests">Bugs and feature requests</h2>
+<p>
+If you find a bug in libusb, libusb-compat-0.1, or another related program, or if you wish to request an enhancement, please verify that the bug still exists in the newest code, and then please create a new ticket on this web page.
+</p>
+<p>
+We require that you <a href="http://www.libusb.org/register">register an account</a> and verify your email address before you can create a ticket, in an attempt to reduce the amount of spam that gets into the system. We are sorry for this inconvenience, but <a href="http://www.libusb.org/register">registering</a> is quick and simple so please don't let it stop you.
+</p>
+<p>
+Make sure to view <a href="http://www.libusb.org/report/1">the list of active tickets</a> before <a href="http://www.libusb.org/newticket">creating a new ticket</a>, so that duplicates can be avoided.
+</p>
+<p>
+Thank you for helping make libusb even better!
+</p>
+<h2 id="Related">Related</h2>
+<ul><li><a class="ext-link" href="http://www.kernel.org/pub/linux/utils/usb/usbutils/"><span class="icon">​</span>usbutils</a> includes the very useful lsusb program to view descriptors in devices
+</li></ul><h2 id="LicenseoftheWikiContent">License of the Wiki Content</h2>
+<p>
+Creative Commons <a class="ext-link" href="http://creativecommons.org/licenses/by-sa/3.0/"><span class="icon">​</span>CC BY-SA 3.0</a>
+</p>
+</div>
+        
+        
+      </div>
+      
+
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="last first">
+          <a rel="nofollow" href="http://www.libusb.org/wiki/WikiStart?format=txt">Plain Text</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr>
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="./libusb_files/trac_logo_mini.png" height="30" width="107" alt="Trac Powered"></a>
+      <p class="left">Powered by <a href="http://www.libusb.org/about"><strong>Trac 0.13dev</strong></a><br>
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Hosting provided by <a href="http://stuge.se/">Konsult Stuge</a>.</p>
+    </div>
+  
+</body><style id="apn-body-style">html {    padding-top: 34px ! important;     border-top: 1px solid transparent; }</style><span id="skype_highlighting_settings" display="none" autoextractnumbers="1"></span><object id="skype_plugin_object" location.href="http://www.libusb.org/" location.hostname="www.libusb.org" style="position: absolute; visibility: hidden; left: -100px; top: -100px; " width="0" height="0" type="application/x-vnd.skype.click2call.chrome.5.7.0"></object></html>

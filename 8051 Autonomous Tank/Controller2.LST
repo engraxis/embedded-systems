@@ -1,0 +1,145 @@
+C51 COMPILER V9.03   CONTROLLER2                                                           06/10/2013 13:18:23 PAGE 1   
+
+
+C51 COMPILER V9.03, COMPILATION OF MODULE CONTROLLER2
+OBJECT MODULE PLACED IN Controller2.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Controller2.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /////////////////////////////////////////////////////////////////////////////////////////
+   2          // Controller is receiving data serially and then manipulating stepper motor
+   3          // Also receiving data through radio receiver and then commanding the shooting mechanism
+   4          /////////////////////////////////////////////////////////////////////////////////////////
+   5          
+   6          #include <REGX51.H>
+   7          
+   8          sbit shoot = P3^7;
+   9          sbit rf_in = P1^2;
+  10          
+  11          void move_stepper(unsigned char);
+  12          void fire(void);
+  13          void stepper_pulses(unsigned char, unsigned char);
+  14          
+  15          unsigned int i;
+  16          unsigned char loop;
+  17          
+  18          void main(void)
+  19          {
+  20   1       P0 = 0x00;
+  21   1       P2 = 0x01;   // stepper motor 
+  22   1       P1 = 0x0F;       // radio receiver
+  23   1      // P3 = 0x01;
+  24   1       TMOD = 0x20; // Setting serial port settings
+  25   1       TH1 = 0xFD;
+  26   1       SCON = 0x50;
+  27   1       TR1 = 1;
+  28   1       shoot=1;
+  29   1       while(1)
+  30   1       {
+  31   2         move_stepper('f');
+  32   2         fire(); 
+  33   2       }
+  34   1      }
+  35          
+  36          void move_stepper(unsigned char x)
+  37          {
+  38   1              
+  39   1       unsigned char rec;
+  40   1       if(x=='f')
+  41   1       {
+  42   2        while(RI==0); 
+  43   2        RI=0;
+  44   2        rec = SBUF; 
+  45   2        stepper_pulses(rec,'f');
+  46   2       }
+  47   1       if (x=='r')
+  48   1       {
+  49   2        stepper_pulses(rec,'r');
+  50   2       }
+  51   1       return;
+  52   1      }
+  53          
+  54          
+  55          void fire(void)
+C51 COMPILER V9.03   CONTROLLER2                                                           06/10/2013 13:18:23 PAGE 2   
+
+  56          {
+  57   1              while (!rf_in);
+  58   1              shoot = 0;
+  59   1              for(i=1;i<=50000;i++);
+  60   1              shoot = 1;
+  61   1              move_stepper('r');
+  62   1      
+  63   1              for(i=1;1<=30;i++)
+  64   1              {
+  65   2                      SBUF=9;
+  66   2                      while(TI==0);
+  67   2                      TI=0;
+  68   2              }
+  69   1              return;
+  70   1      }
+  71          
+  72          void stepper_pulses(unsigned char pul,unsigned char dir)
+  73          {
+  74   1              unsigned char j;
+  75   1              unsigned char k;
+  76   1              if (dir=='f')
+  77   1              {
+  78   2              for(j=1;j<=pul;j++)
+  79   2              {
+  80   3                      for(k=1;k<=12;k++)
+  81   3                      {
+  82   4                              P2=0x11;
+  83   4                              for(i=0;i<=10000;i++);
+  84   4                              P2=0x22;
+  85   4                              for(i=0;i<=10000;i++);
+  86   4                              P2=0x44;
+  87   4                              for(i=0;i<=10000;i++);
+  88   4                              P2=0x88;
+  89   4                              for(i=0;i<=10000;i++);
+  90   4                      }
+  91   3              }
+  92   2              }
+  93   1      
+  94   1              if (dir=='r')
+  95   1              {
+  96   2              for(j=1;j<=pul;j++)
+  97   2              {
+  98   3                      for(k=1;k<=12;k++)
+  99   3                      {
+ 100   4                              P2=0x88;
+ 101   4                              for(i=0;i<=10000;i++);
+ 102   4                              P2=0x44;
+ 103   4                              for(i=0;i<=10000;i++);
+ 104   4                              P2=0x22;
+ 105   4                              for(i=0;i<=10000;i++);
+ 106   4                              P2=0x11;
+ 107   4                              for(i=0;i<=10000;i++);
+ 108   4                      }
+ 109   3              }
+ 110   2              }
+ 111   1      
+ 112   1      }
+ 113          
+ 114          
+ 115          
+ 116          
+ 117          
+C51 COMPILER V9.03   CONTROLLER2                                                           06/10/2013 13:18:23 PAGE 3   
+
+ 118          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    377    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      3       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

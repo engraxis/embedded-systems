@@ -1,0 +1,484 @@
+C51 COMPILER V9.03   PRC                                                                   10/31/2003 01:15:08 PAGE 1   
+
+
+C51 COMPILER V9.03, COMPILATION OF MODULE PRC
+OBJECT MODULE PLACED IN PRC.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE PRC.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1                     ///////////////////////////////////////////////////////////////////////////
+   2          #include <REGX51.H>
+   3          #define lcd P0
+   4          #define row P1
+   5          #define col P2
+   6          sbit rs=P1^5;
+   7          sbit rw=P1^6;
+   8          sbit en=P1^7;
+   9          sbit lcdbusy=P0^7;
+  10          sbit ready=P2^4;                                                //Green Ready
+  11          sbit busy=P2^5;                                                 //Red Busy
+  12          sbit high=P2^7;                                                 //Green High
+  13          sbit low=P2^6;                                                  //Red Low
+  14          sbit check=P3^2;
+  15          ////////////////////////////////// KEYPAD /////////////////////////////////
+  16          unsigned char keypad[4][3]={ '1', '2',  '3',
+  17                                                                   '4', '5', '6',
+  18                                                                   '7', '8', '9',
+  19                                                                   '*', '0', '#'  };
+  20          ////////////////////////////// LCD COMMANDS //////////////////////////////
+  21          void lcdcmd(unsigned char);
+  22          void lcddata(unsigned char);
+  23          void lcdready(void);
+  24          void lcd_pre(void);
+  25          void lcd_guide(void);
+  26          void option(void);
+  27          void manually(void);
+  28          void osc(void);
+  29          void kpad(void);
+  30          ///////////////////////////////// DELAY /////////////////////////////////
+  31          void delay(unsigned int);
+  32          /////////////////////////////// VARIABLES ///////////////////////////////
+  33          unsigned char a;                                                // Looping
+  34          unsigned int b;                                                 // Looping
+  35          unsigned char x;                                                // Storing Character
+  36          unsigned char p;                                                // Storing LCD Current Data #
+  37          unsigned char pulse;                                    // Storing Pulses
+  38          ///////////////////////////// MAIN FUNCTION /////////////////////////////
+  39          void on_pulse(void)     interrupt 0
+  40          {
+  41   1              while(check==0)
+  42   1              {
+  43   2                      low=1;
+  44   2                      high=0; 
+  45   2              }
+  46   1              low=0;
+  47   1              high=1; 
+  48   1              pulse++;
+  49   1      }
+  50          //////////////////////////////////////////////////////
+  51          void main(void)
+  52          {
+  53   1              P1=0x00;
+  54   1              P2=0x00;
+  55   1              ///////////////////////////////
+C51 COMPILER V9.03   PRC                                                                   10/31/2003 01:15:08 PAGE 2   
+
+  56   1              ready=0;
+  57   1              busy=1;
+  58   1              high=0;
+  59   1              low=0;
+  60   1              ////////////////////////////////
+  61   1              pulse=0;
+  62   1              ////////////////////////////////
+  63   1              IE=0x81;
+  64   1              lcdcmd(0x38);
+  65   1              lcdcmd(0x0C);
+  66   1              lcdcmd(0x01);
+  67   1              lcdcmd(0x06);
+  68   1              lcdcmd(0x82);
+  69   1              lcd_pre();
+  70   1              lcd_guide();
+  71   1              option();
+  72   1              while(1);
+  73   1      }
+  74          /////////////////////////////////////////////////////////////////////////
+  75          void lcd_pre(void)
+  76          {
+  77   1              code unsigned char pre_data[]="-- Welcome --UET FSD MECHA-09Abdullah TahirHabib Sultan";
+  78   1              for (a=0;a<=12;a++)
+  79   1              {
+  80   2                      lcddata(pre_data[a]);                                   // --Welcome --
+  81   2              }       
+  82   1              delay(400);     
+  83   1              lcdcmd(0xC0);                                                           
+  84   1              for (a=13;a<=28;a++)
+  85   1              {
+  86   2                      lcddata(pre_data[a]);                                   // UET FSD MECHA-09
+  87   2              }
+  88   1      
+  89   1              delay(1500);                                                    //////////////////////////////////////
+  90   1              lcdcmd(0x01);
+  91   1              lcdcmd(0x81);
+  92   1              for (a=29;a<=42;a++)
+  93   1              {
+  94   2                      lcddata(pre_data[a]);                                   // Abdullah Tahir
+  95   2              }
+  96   1              lcdcmd(0xC2);
+  97   1              for (a=43;a<=54;a++)
+  98   1              {
+  99   2                      lcddata(pre_data[a]);                                   // M Habib Sultan
+ 100   2              }
+ 101   1              delay(1500);                                                    //////////////////////////////////////
+ 102   1              return;
+ 103   1      }
+ 104          /////////////////////////////////////////////////////////////////////////
+ 105          void lcd_guide(void)
+ 106          {
+ 107   1              code unsigned char guide_data[]="-- Guide --Project can be ~used for counti-ng objects,people, eventsetc.
+             -";
+ 108   1              lcdcmd(0x01);
+ 109   1              lcdcmd(0x82);
+ 110   1              for(a=0;a<=10;a++)
+ 111   1              {
+ 112   2                      lcddata(guide_data[a]);                                 // -- Guide --
+ 113   2              }
+ 114   1              lcdcmd(0xC0);
+ 115   1              for(a=11;a<=26;a++)
+ 116   1              {
+C51 COMPILER V9.03   PRC                                                                   10/31/2003 01:15:08 PAGE 3   
+
+ 117   2                      lcddata(guide_data[a]);                                 // Project can be ~
+ 118   2              }
+ 119   1      /////////////////////////////////////////////////////////////////////////////////////// 
+ 120   1              p=1;
+ 121   1              kpad(); 
+ 122   1      ///////////////////////////////////////////////////////////////////////////////////////
+ 123   1              lcdcmd(0x01);
+ 124   1              lcdcmd(0x80);
+ 125   1              for(a=27;a<=42;a++)
+ 126   1              {
+ 127   2                      lcddata(guide_data[a]);                                 // used for counti-
+ 128   2              }
+ 129   1              lcdcmd(0xC0);
+ 130   1              for(a=43;a<=53;a++)
+ 131   1              {
+ 132   2                      lcddata(guide_data[a]);                                 // ng objects,
+ 133   2              }
+ 134   1              lcdcmd(0xCF);
+ 135   1              lcddata('~');
+ 136   1      ///////////////////////////////////////////////////////////////////////////////////////
+ 137   1              p=1;
+ 138   1              kpad();
+ 139   1      ///////////////////////////////////////////////////////////////////////////////////////
+ 140   1              lcdcmd(0x01);
+ 141   1              lcdcmd(0x80);
+ 142   1              for(a=54;a<=67;a++)                                             // people, events
+ 143   1              {
+ 144   2                      lcddata(guide_data[a]);
+ 145   2              }
+ 146   1              lcdcmd(0xC0);
+ 147   1              for(a=68;a<=71;a++)
+ 148   1              {                                                                                       
+ 149   2                      lcddata(guide_data[a]);                                 // etc.
+ 150   2              }       
+ 151   1              lcdcmd(0xcf);
+ 152   1              lcddata('~');
+ 153   1      ///////////////////////////////////////////////////////////////////////////////////////
+ 154   1              p=1;
+ 155   1              kpad();
+ 156   1      ///////////////////////////////////////////////////////////////////////////////////////         
+ 157   1              return;
+ 158   1      }
+ 159          /////////////////////////////////////////////////////////////////////////
+ 160          void option(void)
+ 161          {
+ 162   1              code unsigned char option_data[]="1: Manually2: OSC/SEN";
+ 163   1              p=2;
+ 164   1              high=0;
+ 165   1              low=0;
+ 166   1              ready=0;
+ 167   1              busy=1;
+ 168   1              lcdcmd(0x01);
+ 169   1              lcdcmd(0x80);
+ 170   1              lcdcmd(0x01);
+ 171   1              lcdcmd(0x80);
+ 172   1              for(a=0;a<=10;a++)
+ 173   1              {
+ 174   2                      lcddata(option_data[a]);                                        // # of pulses
+ 175   2              }
+ 176   1              lcdcmd(0xC0);
+ 177   1              for(a=11;a<=20;a++)
+ 178   1              {
+C51 COMPILER V9.03   PRC                                                                   10/31/2003 01:15:08 PAGE 4   
+
+ 179   2                      lcddata(option_data[a]);                                        // 1 for Motor 2 for RESET
+ 180   2              }
+ 181   1      ///////////////////////////////////////////////////////////////////////////////////////
+ 182   1              kpad();
+ 183   1      ///////////////////////////////////////////////////////////////////////////////////////
+ 184   1              return;
+ 185   1      }
+ 186          /////////////////////////////////////////////////////////////////////////
+ 187          void osc(void)
+ 188          {
+ 189   1              code unsigned char osc_data[]="Pulses=1:Manually 2:RST";
+ 190   1              p=4;
+ 191   1              
+ 192   1              high=0;
+ 193   1              low=0;
+ 194   1      
+ 195   1              lcdcmd(0x01);
+ 196   1              lcdcmd(0x80);
+ 197   1              for(a=0;a<=6;a++)
+ 198   1              {
+ 199   2                      lcddata(osc_data[a]);                                   // r/s= r/m=
+ 200   2              }
+ 201   1              lcdcmd(0xC0);
+ 202   1              for(a=7;a<=22;a++)
+ 203   1              {
+ 204   2                      lcddata(osc_data[a]);                                   // 2:RESET
+ 205   2              }
+ 206   1      ///////////////////////////////////////////////////////////////////////////////////////
+ 207   1              ready=1;
+ 208   1              high=1;
+ 209   1              busy=0;
+ 210   1              kpad();
+ 211   1      ///////////////////////////////////////////////////////////////////////////////////////
+ 212   1              return;
+ 213   1      }
+ 214          /////////////////////////////////////////////////////////////////////////
+ 215          void manually(void)
+ 216          {
+ 217   1              code unsigned char osc_data[]="Pulses=1:OSC/SEN 2:RST";
+ 218   1              p=3;
+ 219   1              
+ 220   1              high=0;
+ 221   1              low=0;
+ 222   1              
+ 223   1              lcdcmd(0x01);
+ 224   1              lcdcmd(0x80);
+ 225   1              for(a=0;a<=6;a++)
+ 226   1              {
+ 227   2                      lcddata(osc_data[a]);                                   // r/s= r/m=
+ 228   2              }
+ 229   1              lcdcmd(0xC0);
+ 230   1              for(a=7;a<=21;a++)
+ 231   1              {
+ 232   2                      lcddata(osc_data[a]);                                   // 2:RESET
+ 233   2              }
+ 234   1      ///////////////////////////////////////////////////////////////////////////////////////
+ 235   1              ready=1;
+ 236   1              high=1;
+ 237   1              busy=0;
+ 238   1      
+ 239   1              kpad();
+ 240   1      ///////////////////////////////////////////////////////////////////////////////////////
+C51 COMPILER V9.03   PRC                                                                   10/31/2003 01:15:08 PAGE 5   
+
+ 241   1              return;
+ 242   1      }
+ 243          /////////////////////////////////////////////////////////////////////////
+ 244          void lcdcmd(unsigned char value)
+ 245          {
+ 246   1              lcdready();
+ 247   1              lcd=value;
+ 248   1              rs=0;
+ 249   1              rw=0;
+ 250   1              en=1;
+ 251   1              delay(50);
+ 252   1              en=0;
+ 253   1              return;
+ 254   1      }
+ 255          /////////////////////////////////////////////////////////////////////////
+ 256          void lcddata(unsigned char value)
+ 257          {
+ 258   1              lcdready();      
+ 259   1              lcd=value;
+ 260   1              rs=1;
+ 261   1              rw=0;
+ 262   1              en=1;
+ 263   1              delay(50);
+ 264   1              en=0;
+ 265   1              return;
+ 266   1      }
+ 267          /////////////////////////////////////////////////////////////////////////
+ 268          void lcdready(void)
+ 269          {
+ 270   1              lcdbusy=1;
+ 271   1              rs=0;
+ 272   1              rw=1;
+ 273   1              while(lcdbusy==1)
+ 274   1              {
+ 275   2                      en=0;
+ 276   2                      delay(50);
+ 277   2                      en=1;
+ 278   2              }       
+ 279   1              return;
+ 280   1      }
+ 281          /////////////////////////////////////////////////////////////////////////
+ 282          void kpad(void)
+ 283          {
+ 284   1              unsigned char c,r;
+ 285   1              col=0xff;
+ 286   1              
+ 287   1              if(p==1)
+ 288   1              {
+ 289   2                      high=0;
+ 290   2                      low=0;
+ 291   2                      ready=0;
+ 292   2                      busy=1; 
+ 293   2              }
+ 294   1      
+ 295   1              if(p==2)
+ 296   1              {
+ 297   2                      high=0;
+ 298   2                      low=0;
+ 299   2                      ready=0;
+ 300   2                      busy=1;
+ 301   2              }
+ 302   1              
+C51 COMPILER V9.03   PRC                                                                   10/31/2003 01:15:08 PAGE 6   
+
+ 303   1              if(p==3 || p==4)
+ 304   1              {
+ 305   2                      ready=1;
+ 306   2                      high=1;
+ 307   2                      busy=0;
+ 308   2                      low=0;
+ 309   2              }
+ 310   1              
+ 311   1              
+ 312   1              
+ 313   1              while(1)
+ 314   1              {
+ 315   2                      do
+ 316   2                      {
+ 317   3                              row=0x00;
+ 318   3                              c=col;
+ 319   3                              c&=0x0f;
+ 320   3                      }               
+ 321   2                      while(c!=0x0f);
+ 322   2                      
+ 323   2                      do
+ 324   2                      {
+ 325   3                              do
+ 326   3                              {
+ 327   4                                      delay(20);
+ 328   4                                      c=col;
+ 329   4                                      c&=0x0f;
+ 330   4                              }
+ 331   3                              while(c==0x0f);
+ 332   3                              
+ 333   3                              delay(20);
+ 334   3                              c=col;
+ 335   3                              c&=0x0f;
+ 336   3                      }
+ 337   2                      while(c==0x0f);
+ 338   2      
+ 339   2                      while(1)
+ 340   2                      {
+ 341   3                              row=0xfe;
+ 342   3                              c=col;
+ 343   3                              c&=0x0f;
+ 344   3                              if(c!=0x0f)
+ 345   3                              {
+ 346   4                                      r=0;
+ 347   4                                      break;
+ 348   4                              }
+ 349   3      
+ 350   3                              row=0xfd;
+ 351   3                              c=col;
+ 352   3                              c&=0x0f;
+ 353   3                              if(c!=0x0f)
+ 354   3                              {
+ 355   4                                      r=1;
+ 356   4                                      break;
+ 357   4                              }
+ 358   3      
+ 359   3                              row=0xfb;
+ 360   3                              c=col;
+ 361   3                              c&=0x0f;
+ 362   3                              if(c!=0x0f)
+ 363   3                              {
+ 364   4                                      r=2;
+C51 COMPILER V9.03   PRC                                                                   10/31/2003 01:15:08 PAGE 7   
+
+ 365   4                                      break;
+ 366   4                              }
+ 367   3      
+ 368   3                              row=0xf7;
+ 369   3                              c=col;
+ 370   3                              c&=0x0f;
+ 371   3                              r=3;
+ 372   3                              break;
+ 373   3      
+ 374   3                      }
+ 375   2              
+ 376   2                      if(c==0x0e)
+ 377   2                      {
+ 378   3                              x=keypad[r][0];
+ 379   3                      }
+ 380   2                      else if(c==0x0d)
+ 381   2                      {
+ 382   3                              x=keypad[r][1];
+ 383   3                      }
+ 384   2                      else if(c==0x0b)
+ 385   2                      {
+ 386   3                              x=keypad[r][2];
+ 387   3                      }
+ 388   2                      else
+ 389   2                      {
+ 390   3                              x=keypad[r][3];
+ 391   3                      }
+ 392   2                      /////////////////////////////////////////////////////////////////
+ 393   2                      if(p==1 && x=='#')
+ 394   2                      {
+ 395   3                                      return;
+ 396   3                      }
+ 397   2                      if(p==2)
+ 398   2                      {
+ 399   3                              if(x=='1')
+ 400   3                              {
+ 401   4                                      manually();
+ 402   4                                      return;
+ 403   4                              }
+ 404   3                              if(x=='2')
+ 405   3                              {
+ 406   4                                      osc();
+ 407   4                                      return;
+ 408   4                              }
+ 409   3                      }
+ 410   2                      if(p==3 || p==4)
+ 411   2                      {
+ 412   3                              if(x=='2')
+ 413   3                              {
+ 414   4                                      option();
+ 415   4                                      return;
+ 416   4                              }
+ 417   3                      }
+ 418   2                      if(p==3 && x=='1')
+ 419   2                      {
+ 420   3                              osc();
+ 421   3                              return;
+ 422   3                      }
+ 423   2                      if(p==4 && x=='1')
+ 424   2                      {
+ 425   3                              manually();
+ 426   3                              return;
+C51 COMPILER V9.03   PRC                                                                   10/31/2003 01:15:08 PAGE 8   
+
+ 427   3                      }
+ 428   2              }
+ 429   1      }
+ 430          /////////////////////////////////////////////////////////////////////////
+ 431          void delay(unsigned int z)
+ 432          {       
+ 433   1              for(b=1;b<z;b++)
+ 434   1              {
+ 435   2                      TMOD=0X01;
+ 436   2                      TH0=0XFC;
+ 437   2                      TL0=0X66;
+ 438   2                      TR0=1;
+ 439   2                      while(TF0==0);
+ 440   2                      TR0=0;
+ 441   2                      TF0=0;                  
+ 442   2              }       
+ 443   1              return;
+ 444   1      
+ 445   1      }
+ 446          /////////////////////////////////////////////////////////////////////////
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    995    ----
+   CONSTANT SIZE    =    198    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     18       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

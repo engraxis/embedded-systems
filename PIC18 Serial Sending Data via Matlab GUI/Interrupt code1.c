@@ -1,0 +1,117 @@
+
+#pragma config OSC=HS, OSCS=OFF
+#pragma config PWRT=OFF, BOR=ON, BORV=45
+#pragma config WDT=OFF, LVP=OFF
+#pragma config DEBUG=OFF, STVR=OFF
+
+#include<P18F452.h>
+
+unsigned char store_rec_data[];
+unsigned char inc=0;
+unsigned char j,k;
+void data_display(void);
+////////////////////////////////////////////////////////
+#define ldata PORTD
+
+#define rs PORTBbits.RB0
+#define rw PORTBbits.RB1
+#define en PORTBbits.RB2
+#define busy PORTDbits.RD7
+
+void lcdcmd(unsigned char);
+void lcddata(unsigned char);
+void delay(unsigned char);
+void lcdready(void);
+void check_intt(void);
+
+////////////////////////////////////////////////////////
+
+#pragma code HPI = 0x08
+void HPI(void)
+{
+	_asm
+	GOTO check_intt
+	_endasm
+}
+#pragma code
+
+#pragma interrupt check_intt
+void check_intt(void)
+{
+	if(RCREG=='$')
+		lcdcmd(0x01);
+	else
+		lcddata(RCREG);
+	PORTA=0XAA;	
+}
+
+void main(void)
+{
+	TRISCbits.TRISC7=1;
+	TRISA=0X00;
+	PORTA=0X00;
+	TXSTA=0X20;
+	SPBRG=15;
+	RCSTAbits.CREN=1;
+	RCSTAbits.SPEN=1;
+	PIE1bits.RCIE=1;
+	INTCONbits.PEIE=1;
+	INTCONbits.GIE=1;
+	RCREG=0x00;
+////////////////////////////////////////////////////////
+	TRISD=TRISB=0x00;
+	PORTD=PORTB=0X00;
+	lcdcmd(0x38);
+	lcdcmd(0x0C);
+	lcdcmd(0x01);
+	lcdcmd(0x06);
+	lcdcmd(0x80);
+	lcddata('A');
+	lcddata('B');
+	lcddata('Z');
+////////////////////////////////////////////////////////
+	while(1);
+}
+void lcddata(unsigned char value)
+{
+	lcdready();	 
+	ldata=value;
+	rs=1;
+	rw=0;
+	en=1;
+	delay(10);
+	en=0;
+	return;
+}
+void lcdready(void)
+{
+	TRISD=0xFF;
+	rs=0;
+	rw=1;
+	do
+	{
+		en=1;
+		delay(10);
+		en=0;
+	}	
+	while(busy==1);
+	TRISD=0x00;
+	return;
+}
+void lcdcmd(unsigned char value)
+{
+	lcdready();
+	ldata=value;
+	rs=0;
+	rw=0;
+	en=1;
+	delay(10);
+	en=0;
+	return;
+}	
+void delay(unsigned char a)
+{
+	for(j=1;j<=a;j++)
+		for(k=1;k<=100;k++);
+	return;
+}

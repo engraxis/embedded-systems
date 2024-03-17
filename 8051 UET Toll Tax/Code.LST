@@ -1,0 +1,236 @@
+C51 COMPILER V9.03   CODE                                                                  10/17/2012 22:55:35 PAGE 1   
+
+
+C51 COMPILER V9.03, COMPILATION OF MODULE CODE
+OBJECT MODULE PLACED IN Code.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          ///////////////////////////////////////////////////////////////////////////
+   2          #include <REGX51.H>
+   3          #include <string.h>
+   4          #define lcd P0
+   5          sbit rs=P1^5;
+   6          sbit rw=P1^6;
+   7          sbit en=P1^7;
+   8          sbit lcdbusy=P0^7;
+   9          sbit pc=P3^2;
+  10          sbit co=P3^3;
+  11          sbit lv=P3^4;
+  12          sbit hv=P3^5;
+  13          ////////////////////////// LCD DISPLAY FUNCTIONS //////////////////////////
+  14          void lcdcmd(unsigned char);
+  15          void lcddata(unsigned char);
+  16          void lcdready(void);
+  17          void lcd_pre(void);
+  18          void fun_lv(void);
+  19          void fun_hv(void);
+  20          void payment_barrier_up(void);
+  21          void barrier_down(void);
+  22          ///////////////////////////////// DELAY //////////////////////////////////
+  23          void delay(unsigned int);
+  24          //////////////////////////////// VARIABLES ///////////////////////////////
+  25          unsigned char a;                                                // Looping
+  26          unsigned char b;                                                // Looping
+  27          unsigned char i;                                                // Looping for Stepper motor
+  28          unsigned char ok;                                               // Variable used to call "lcd_pre()"
+  29          unsigned char x,y;                                              // Current status of P3
+  30          /////////////////////////////////////////////////////
+  31          //void payment_barrier_up(void) interrupt 0  //Cash OK Barrier Open
+  32          void payment_barrier_up(void) 
+  33          {       
+  34   1              code unsigned char pre_data[]="   Payment OK   ";       
+  35   1      
+  36   1              lcdcmd(0xC2);
+  37   1              for(i=1;i<=24;i++)
+  38   1              {
+  39   2                      P2=0x80;
+  40   2                      delay(80);
+  41   2                      P2=0x40;
+  42   2                      delay(80);
+  43   2                      P2=0x20;
+  44   2                      delay(80);
+  45   2                      P2=0x10;
+  46   2                      delay(80);
+  47   2              }
+  48   1              for (a=0;a<=(strlen(pre_data)-1);a++)
+  49   1              {
+  50   2                      lcddata(pre_data[a]);                                   
+  51   2              }
+  52   1              return;
+  53   1      }
+  54          /////////////////////////////////////////////////////
+  55          //void barrier_down(void) interrupt 2    //Barrier Close
+C51 COMPILER V9.03   CODE                                                                  10/17/2012 22:55:35 PAGE 2   
+
+  56          void barrier_down(void) 
+  57          {                                                 
+  58   1              for(i=1;i<=24;i++)
+  59   1              {
+  60   2                      P2=0x10;
+  61   2                      delay(80);
+  62   2                      P2=0x20;
+  63   2                      delay(80);
+  64   2                      P2=0x40;
+  65   2                      delay(80);
+  66   2                      P2=0x80;
+  67   2                      delay(80);
+  68   2              }
+  69   1              ok=1;
+  70   1      }
+  71          ///////////////////////////// MAIN FUNCTION /////////////////////////////
+  72          void main(void)
+  73          {
+  74   1              ok=2;
+  75   1              P1=P2=0x00;
+  76   1              lcdcmd(0x38);
+  77   1              lcdcmd(0x0C);
+  78   1              lcdcmd(0x01);
+  79   1              lcdcmd(0x06);
+  80   1              lcd_pre();
+  81   1      
+  82   1              y=P3;
+  83   1              while(y==P3);
+  84   1      
+  85   1              while(1)
+  86   1              {
+  87   2                      if(lv==0 && hv==0)
+  88   2                      {
+  89   3                              fun_hv();       
+  90   3                      }
+  91   2                      if(lv==0 && hv==1)
+  92   2                      {
+  93   3                              fun_lv();       
+  94   3                      }
+  95   2                      if(co==1)
+  96   2                      {
+  97   3                              barrier_down();
+  98   3                      }
+  99   2                      if(pc==0)
+ 100   2                      {
+ 101   3                              payment_barrier_up();
+ 102   3                      }
+ 103   2                      if(ok==1)
+ 104   2                      {
+ 105   3                              lcdcmd(0xC0);
+ 106   3                              for(x=0;x<=15;x++)
+ 107   3                              {
+ 108   4                                      lcddata(' ');
+ 109   4                              }
+ 110   3                              ok=2;
+ 111   3                      }
+ 112   2              }
+ 113   1      }
+ 114          /////////////////////////////////////////////////////////////////////////
+ 115          void lcd_pre(void)                                      //Data, that should be displayed on the LCD
+ 116          {
+ 117   1              code unsigned char pre_data[]="UET TOLL TAX";
+C51 COMPILER V9.03   CODE                                                                  10/17/2012 22:55:35 PAGE 3   
+
+ 118   1              code unsigned char pre_data1[]="Drive Safely";
+ 119   1              lcdcmd(0x01);
+ 120   1              lcdcmd(0x84);
+ 121   1              for (a=0;a<=(strlen(pre_data)-1);a++)
+ 122   1              {
+ 123   2                      lcddata(pre_data[a]);                                   
+ 124   2              }       
+ 125   1              lcdcmd(0x98);                                                           
+ 126   1              for (a=0;a<=(strlen(pre_data1)-1);a++)
+ 127   1              {
+ 128   2                      lcddata(pre_data1[a]);                                  
+ 129   2              }
+ 130   1              return;                                                          
+ 131   1      }
+ 132          /////////////////////////////////////////////////////////////////////////
+ 133          void lcdcmd(unsigned char value)
+ 134          {
+ 135   1              lcdready();
+ 136   1              lcd=value;
+ 137   1              rs=0;
+ 138   1              rw=0;
+ 139   1              en=1;
+ 140   1              delay(50);
+ 141   1              en=0;
+ 142   1              return;
+ 143   1      }
+ 144          /////////////////////////////////////////////////////////////////////////
+ 145          void lcddata(unsigned char value)
+ 146          {
+ 147   1              lcdready();      
+ 148   1              lcd=value;
+ 149   1              rs=1;
+ 150   1              rw=0;
+ 151   1              en=1;
+ 152   1              delay(50);
+ 153   1              en=0;
+ 154   1              return;
+ 155   1      }
+ 156          /////////////////////////////////////////////////////////////////////////
+ 157          void lcdready(void)
+ 158          {
+ 159   1              lcdbusy=1;
+ 160   1              rs=0;
+ 161   1              rw=1;
+ 162   1              while(lcdbusy==1)
+ 163   1              {
+ 164   2                      en=0;
+ 165   2                      delay(50);
+ 166   2                      en=1;
+ 167   2              }       
+ 168   1              return;
+ 169   1      }
+ 170          /////////////////////////////////////////////////////////////////////////
+ 171          void delay(unsigned int z)
+ 172          {       
+ 173   1              for(b=1;b<z;b++)
+ 174   1              {
+ 175   2                      TMOD=0X01;
+ 176   2                      TH0=0XFC;
+ 177   2                      TL0=0X66;
+ 178   2                      TR0=1;
+ 179   2                      while(TF0==0);
+C51 COMPILER V9.03   CODE                                                                  10/17/2012 22:55:35 PAGE 4   
+
+ 180   2                      TR0=0;
+ 181   2                      TF0=0;                  
+ 182   2              }       
+ 183   1              return;
+ 184   1      }
+ 185          /////////////////////////////////////////////////////////////////////////
+ 186          void fun_lv(void)                                         //Cash display for Light Vehicle
+ 187          {
+ 188   1              code unsigned char pre_data[]="Pay cash = Rs.25";       
+ 189   1              lcdcmd(0xC2);
+ 190   1              for (a=0;a<=(strlen(pre_data)-1);a++)
+ 191   1              {
+ 192   2                      lcddata(pre_data[a]);                                   
+ 193   2              }       
+ 194   1              return;
+ 195   1      }
+ 196          /////////////////////////////////////////////////////////////////////////
+ 197          void fun_hv(void)                                         //Cash display for Heavy Vehicle
+ 198          {
+ 199   1              code unsigned char pre_data[]="Pay cash = Rs.50";       
+ 200   1              lcdcmd(0xC2);
+ 201   1              for (a=0;a<=(strlen(pre_data)-1);a++)
+ 202   1              {
+ 203   2                      lcddata(pre_data[a]);                                   
+ 204   2              }       
+ 205   1              return;
+ 206   1      }
+ 207          /////////////////////////////////////////////////////////////////////////
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    549    ----
+   CONSTANT SIZE    =     77    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      6       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

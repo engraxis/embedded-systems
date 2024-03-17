@@ -1,0 +1,19 @@
+# MPLAB IDE generated this makefile for use with Microsoft `nmake'.
+# Project: LCD Interfacing.mcp
+# Date: Sun Nov 25 16:19:19 2012
+
+AS = MPASMWIN.exe
+CC = mcc18.exe
+LD = mplink.exe
+AR = mplib.exe
+RM = del
+
+"LCD Interfacing.cof" : "PORTB Code.o"
+	$(LD) /p18F452 /l"C:\Program Files\Microchip\mplabc18\v3.40\lib" "PORTB Code.o" /u_CRUNTIME /u_DEBUG /z__MPLAB_BUILD=1 /z__MPLAB_DEBUG=1 /o"LCD Interfacing.cof" /M"LCD Interfacing.map" /W
+
+"PORTB Code.o" : "PORTB Code.c" "..\..\..\..\Program Files\Microchip\mplabc18\v3.40\h\string.h" "PORTB Code.c" "..\..\..\..\Program Files\Microchip\mplabc18\v3.40\h\P18F458.h" "..\..\..\..\Program Files\Microchip\mplabc18\v3.40\h\stddef.h"
+	$(CC) -p=18F452 "PORTB Code.c" -fo="PORTB Code.o" -D__DEBUG -Ou- -Ot- -Ob- -Op- -Or- -Od- -Opa-
+
+"clean" : 
+	$(RM) "PORTB Code.o" "LCD Interfacing.cof" "LCD Interfacing.hex"
+

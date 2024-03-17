@@ -1,0 +1,17 @@
+CHAMPAAT ATMEL's AT80X51/52 TRAINER by ABDULLAH TAHIR - 2009MC106 UET, FSD Campus
+=================================================================================
+
+Product Specifications:
+
+1.  Bar Graph can be attached with any Port, one Port at a time.
+2.  RTC or External Memory can be interfaced by removing jumper from Pull Up Resistors.
+3.  LCD Interfacing with Port 0 with RS, RW, EN pins as P1^5, P1^6, P1^7 repectively.
+4.  ULN 2803 Darlington Pair Transistor Array for driving DC or Stepper Motor(s), interfaced with Port 2.
+    Attach external supply (user defined).
+5.  Serial communication provision is available, attach jumper for Rx enabling.
+6.  LM339 Differential Comparator is available with unattached O/P pins for sensor(s) interfacing.
+    These O/P pins are left unattached so that they may be interfaced with external interrupt pins when required, with jumpers.
+7.  ISP (In Circuit Serial Programming) can be done.
+8.  No need for checking polarity of Voltage Input.
+9.  Extra 5V points are available too (one exact 5V and other with VR).
+10. All (Jumpers, LCD, RTC, Sensors and all external I/P and or O/P interfacing) designed as Plug and Play Devices.

@@ -1,0 +1,89 @@
+C51 COMPILER V9.03   CODE                                                                  04/21/2013 00:42:38 PAGE 1   
+
+
+C51 COMPILER V9.03, COMPILATION OF MODULE CODE
+OBJECT MODULE PLACED IN Code.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          ///////////////////////////////////////////////////////////
+   2          // Servo Motor Control using AT89C51 (8051) Microcontroller
+   3          ///////////////////////////////////////////////////////////
+   4          
+   5          #include <REGX51.H>
+   6          
+   7          sbit sm1=P2^0;
+   8          sbit sm2=P2^1;
+   9          
+  10          void move_sm1(unsigned int);            // passing required value of theta as argument
+  11          void move_sm2(unsigned int);            
+  12          void sm_delay(unsigned int);            // creating basic delay of 40us(including over head)
+  13          void delay(unsigned int);                       // basic delay of 1s approx
+  14          
+  15          unsigned int preset,x;                          // preset value that will essentially create delay of 1us
+  16          
+  17          void main (void)
+  18          {
+  19   1              P0=P1=P2=P3=0;
+  20   1              preset=26;
+  21   1      
+  22   1              TMOD=0X02;
+  23   1              TH0=-1;
+  24   1      //      while(1)
+  25   1              {
+  26   2              move_sm1(25);
+  27   2              for(x=1;x<=55000;x++);
+  28   2              move_sm1(0);
+  29   2              for(x=1;x<=55000;x++);
+  30   2              move_sm1(30);
+  31   2              }
+  32   1              while(1);
+  33   1      }
+  34          void move_sm1(unsigned int angle)
+  35          {
+  36   1                                                                                                                                      //      des_td=(.001/180)*angle;
+  37   1                                                                                                                                      //      des_td=des_td/.00004;
+  38   1                                                                                                                                      //      sm_delay(des_td);
+  39   1              sm1=1;
+  40   1              sm_delay(angle);
+  41   1              sm1=0;  
+  42   1              sm_delay(100);
+  43   1      }
+  44          void move_sm2(unsigned int angle)
+  45          {
+  46   1                                                                                                                                      //      des_td=(.001/180)*angle;
+  47   1                                                                                                                                      //      des_td=des_td/.00004;                                                                                                                           //      sm_delay(des_td);
+  48   1              sm2=1;
+  49   1              sm_delay(angle);
+  50   1              sm2=0;  
+  51   1              sm_delay(100);
+  52   1      }
+  53          void sm_delay(unsigned int des_td_angle)
+  54          {
+  55   1              
+C51 COMPILER V9.03   CODE                                                                  04/21/2013 00:42:38 PAGE 2   
+
+  56   1              for(x=0;x<preset+des_td_angle;x++)
+  57   1              {
+  58   2                      TR0=1;
+  59   2                      while(TF0==0);
+  60   2                      TR0=0;
+  61   2                      TF0=0;
+  62   2              }
+  63   1              return;
+  64   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    181    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,177 @@
+C51 COMPILER V9.02   CODE                                                                  06/21/2012 12:12:57 PAGE 1   
+
+
+C51 COMPILER V9.02, COMPILATION OF MODULE CODE
+OBJECT MODULE PLACED IN Code.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Code.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          ///////////////////////////////////////////
+   2          #include <REGX51.H>
+   3          ///////////////////////////////////////////
+   4          sbit cw=P1^0; 
+   5          sbit ccw=P1^1;
+   6          sbit inc=P1^2;
+   7          sbit dec=P1^3;
+   8          sbit cwled=P2^6;
+   9          sbit ccwled=P2^7;
+  10          unsigned char speed;
+  11          ///////////////////////////////////////////
+  12          void delay(void);
+  13          void cwfun(void);
+  14          void ccwfun(void);
+  15          ///////////////////////////////////////////
+  16          void main (void)
+  17          {
+  18   1              P0=P1=P2=P3=0X00;
+  19   1              speed=3;
+  20   1              cwled=ccwled=0;
+  21   1              while(1)
+  22   1              {
+  23   2                      if(cw==1 && ccw==1 || cw==0 && ccw==0)
+  24   2                      {
+  25   3                              P0=0x00;
+  26   3                              cwled=ccwled=1;
+  27   3                      }
+  28   2                      if (cw==1 && ccw!=1)
+  29   2                              cwfun();
+  30   2                      if(ccw==1 && cw!=1)     
+  31   2                              ccwfun();
+  32   2              }
+  33   1      }           
+  34          ///////////////////////////////////////////
+  35          void delay(void)
+  36          {
+  37   1              TMOD=0X01;
+  38   1      
+  39   1              if (speed>4)
+  40   1                      speed=4;
+  41   1              if (speed <0)
+  42   1                      speed=0;
+  43   1              
+  44   1              if (speed==1)
+  45   1              {       
+  46   2                      TH0=0X00;
+  47   2                      TL0=0X00;
+  48   2              }
+  49   1              if (speed==2)
+  50   1              {
+  51   2                      TH0=0X00;
+  52   2                      TL0=0X00;
+  53   2              }
+  54   1              if (speed==3)
+  55   1              {
+C51 COMPILER V9.02   CODE                                                                  06/21/2012 12:12:57 PAGE 2   
+
+  56   2                      TH0=0XFF;
+  57   2                      TL0=0XFF;
+  58   2              }
+  59   1              if (speed==4)
+  60   1              {
+  61   2                      TH0=0X00;
+  62   2                      TL0=0X00;
+  63   2              }
+  64   1              if (speed==5)
+  65   1              {
+  66   2                      TH0=0X00;
+  67   2                      TL0=0X00;       
+  68   2              }
+  69   1      
+  70   1      
+  71   1              TR0=1;
+  72   1              while(TF0==0);
+  73   1              TR0=0;
+  74   1              TF0=0;
+  75   1              return; 
+  76   1      }
+  77          ///////////////////////////////////////////
+  78          void cwfun(void)
+  79          {
+  80   1              P0=0x10;
+  81   1              while(ccw==0)
+  82   1              {
+  83   2                      delay();
+  84   2                      P0=P0>>1;
+  85   2                      if(P0==0x80)
+  86   2                      {
+  87   3                              delay();
+  88   3                              P0=0x10;
+  89   3                      }
+  90   2              }
+  91   1              return;
+  92   1      }
+  93          ///////////////////////////////////////////
+  94          /*void cwfun(void)
+  95          {
+  96                  cwled=0;
+  97                  ccwled=1;
+  98                  while(ccw==0)
+  99                  {
+ 100                          P0=0x10;
+ 101                          delay();
+ 102                          P0=0x20;
+ 103                          delay();
+ 104                          P0=0x40;
+ 105                          delay();
+ 106                          P0=0x80;
+ 107                          delay();
+ 108          
+ 109                          if(inc==1)
+ 110                          {
+ 111                                  delay();
+ 112                                  speed++;
+ 113                          }
+ 114                          if(dec==1)
+ 115                          {
+ 116                                  delay();
+ 117                                  speed--;
+C51 COMPILER V9.02   CODE                                                                  06/21/2012 12:12:57 PAGE 3   
+
+ 118                          }
+ 119                  }
+ 120                  return;
+ 121          }*/
+ 122          ///////////////////////////////////////////
+ 123          void ccwfun(void)
+ 124          {
+ 125   1              ccwled=0;
+ 126   1              cwled=1;
+ 127   1              while(cw==0)
+ 128   1              {
+ 129   2                      P0=0x80;
+ 130   2                      delay();
+ 131   2                      P0=0x40;
+ 132   2                      delay();
+ 133   2                      P0=0x20;
+ 134   2                      delay();
+ 135   2                      P0=0x10;
+ 136   2                      delay();
+ 137   2      
+ 138   2                      if(inc==1)
+ 139   2                      {
+ 140   3                              delay();
+ 141   3                              speed++;
+ 142   3                      }
+ 143   2                      if(dec==1)
+ 144   2                      {
+ 145   3                              delay();
+ 146   3                              speed--;
+ 147   3                      }
+ 148   2              }
+ 149   1              return;
+ 150   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    217    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

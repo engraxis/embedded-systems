@@ -1,0 +1,17 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\Engr. Abdullah Tahir\abz - LABORATORY\ALL PROJECTS\8051 Servo Control\Servo Motor.uvproj
+Project File Date:  09/15/2012
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling Code.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_MOVE_SM2?CODE
+Program Size: data=13.0 xdata=0 code=218
+creating hex file from "Servo Motor"...
+"Servo Motor" - 0 Error(s), 1 Warning(s).

@@ -1,0 +1,627 @@
+C51 COMPILER V9.03   CONTROLLER1                                                           06/09/2013 19:20:17 PAGE 1   
+
+
+C51 COMPILER V9.03, COMPILATION OF MODULE CONTROLLER1
+OBJECT MODULE PLACED IN Controller1.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Controller1.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          ///////////////////////////////////////////////////////////////////////////
+   2          #include <REGX51.H>
+   3          #include <string.h>
+   4          
+   5          #define lcd P0
+   6          #define row P1
+   7          #define col P2
+   8          
+   9          sbit rs=P1^5;
+  10          sbit rw=P1^6;
+  11          sbit en=P1^7;
+  12          sbit lcdbusy=P0^7;
+  13          
+  14          sbit m11=P3^2;
+  15          sbit m12=P3^3;
+  16          sbit m21=P3^6;
+  17          sbit m22=P3^7;
+  18          
+  19          sbit us_l = P2^4; 
+  20          sbit us_r = P2^7;
+  21          sbit us_f = P2^5;
+  22          sbit us_b = P2^6;
+  23          
+  24          ////////////////////////////////// KEYPAD /////////////////////////////////
+  25          unsigned char keypad[4][3]={ '1', '2',  '3',
+  26                                                                   '4', '5', '6',
+  27                                                                   '7', '8', '9',
+  28                                                                   '*', '0', '#'  };
+  29          /////////////////////////// IMPORTANT FUNCTIONS ////////////////////////////
+  30          void lcdcmd(unsigned char);
+  31          void lcddata(unsigned char);
+  32          void lcdready(void);
+  33          
+  34          char kpad(void);
+  35          
+  36          void delay(unsigned int);
+  37          
+  38          void initialization(void);
+  39          void coordinates(void);
+  40          void logic(unsigned char, unsigned char, unsigned char []);
+  41          void start(unsigned char, unsigned char, unsigned char, unsigned char);
+  42          void enter_coordinates(unsigned char);
+  43          void start_counters(void);
+  44          void stepper_fire(void);
+  45          
+  46          unsigned int i;                                                                 // Global looping variable
+  47          code unsigned char info2[] = "#: Next";                 // Will be used in many screens
+  48          //////////////////////////////////////////////////////
+  49          void main(void)
+  50          {                                               
+  51   1              P0=P1=P2=0x00;  
+  52   1              P2=0xF0;        
+  53   1              TMOD=0x26;
+  54   1              SCON=0x50;
+  55   1              TH1=0xFD;
+C51 COMPILER V9.03   CONTROLLER1                                                           06/09/2013 19:20:17 PAGE 2   
+
+  56   1              TI=0;
+  57   1              RI=0;
+  58   1              TR1=1;
+  59   1      
+  60   1      
+  61   1              initialization();
+  62   1              coordinates();
+  63   1      
+  64   1              while(1);
+  65   1      }
+  66          /////////////////////////////////////////////////////////////////////////
+  67          void initialization(void)
+  68          {
+  69   1              code unsigned char disp1[] = "W E L C O M E"; 
+  70   1      
+  71   1              m11=m12=m21=m22=0;      
+  72   1              P2 = P2 & 0x0F;
+  73   1              lcdcmd(0x38);
+  74   1              lcdcmd(0x0C);
+  75   1              lcdcmd(0x01);
+  76   1              lcdcmd(0x06);
+  77   1      /////////////////////////////////////////////////////////////
+  78   1              lcdcmd(0x81);   
+  79   1              for (i=0;i<=(strlen(disp1)-1);i++)
+  80   1              {
+  81   2                      lcddata(disp1[i]);                                      // Welcome 
+  82   2              }
+  83   1              lcdcmd(0xC0);
+  84   1              for (i=0;i<=(strlen(info2)-1);i++)
+  85   1              {
+  86   2                      lcddata(info2[i]);                                      // #: Next 
+  87   2              }
+  88   1      /////////////////////////////////////////////////////////////
+  89   1              while(1)
+  90   1              {
+  91   2                      if (kpad() == '#')
+  92   2                      {
+  93   3                              lcdcmd(0x01);
+  94   3                              break;
+  95   3                      }
+  96   2              }
+  97   1      
+  98   1      }
+  99          /////////////////////////////////////////////////////////////
+ 100          void coordinates(void)
+ 101          {
+ 102   1              code unsigned char info1[] = "Points = 4"; 
+ 103   1              unsigned char total;
+ 104   1              lcdcmd(0x80);   
+ 105   1              for (i=0;i<=(strlen(info1)-1);i++)
+ 106   1              {
+ 107   2                      lcddata(info1[i]);                                      // Get total number of coordinates
+ 108   2              }
+ 109   1              lcdcmd(0xC0);
+ 110   1              for (i=0;i<=(strlen(info2)-1);i++)
+ 111   1              {
+ 112   2                      lcddata(info2[i]);                                      // #: Next 
+ 113   2              }
+ 114   1      
+ 115   1      /*      total = kpad();
+ 116   1              lcdcmd(0x89);
+ 117   1              lcddata(total);
+C51 COMPILER V9.03   CONTROLLER1                                                           06/09/2013 19:20:17 PAGE 3   
+
+ 118   1              total = total & 0x0F;                                   // From ASCII -> binary
+ 119   1      */
+ 120   1              total=0x04;
+ 121   1              while(1)
+ 122   1              {
+ 123   2                      if (kpad() == '#')
+ 124   2                      {
+ 125   3                              lcdcmd(0x01);
+ 126   3                              break;
+ 127   3                      }
+ 128   2              }
+ 129   1              enter_coordinates(total);
+ 130   1              return;
+ 131   1      }
+ 132          void enter_coordinates(unsigned char total)
+ 133          {
+ 134   1              code unsigned char disp2[]="X,Y:  =  ,  ";
+ 135   1              unsigned char xy_coordinates[20];
+ 136   1              unsigned char total_loop, total_disp, xy_increment, a;
+ 137   1              xy_increment=0;
+ 138   1              xy_coordinates[0]=' ';
+ 139   1      
+ 140   1              for(total_loop=1; total_loop<=total; total_loop++)      
+ 141   1              {
+ 142   2                      // Enter Points
+ 143   2                      for (i=0;i<=(strlen(disp2)-1);i++)
+ 144   2                      {
+ 145   3                              lcddata(disp2[i]);                      
+ 146   3                      }
+ 147   2                      total_disp = total_loop & 0x0F;
+ 148   2                      total_disp = total_loop | 0x30;
+ 149   2                      lcdcmd(0x84);
+ 150   2                      lcddata(total_disp);
+ 151   2              
+ 152   2                      lcdcmd(0xC0);
+ 153   2                      for (i=0;i<=(strlen(info2)-1);i++)
+ 154   2                      {
+ 155   3                              lcddata(info2[i]);                         // #: Next 
+ 156   3                      }
+ 157   2      
+ 158   2                      a = kpad();
+ 159   2                      lcdcmd(0x88);
+ 160   2                      lcddata(a);
+ 161   2                      xy_coordinates[xy_increment++] = a;// & 0x0F;
+ 162   2                      a = kpad();
+ 163   2                      lcdcmd(0x8A);
+ 164   2                      lcddata(a);
+ 165   2                      xy_coordinates[xy_increment++] = a;// & 0x0F;
+ 166   2                      
+ 167   2                      while(1)
+ 168   2                      {
+ 169   3                              if (kpad() == '#')
+ 170   3                              {
+ 171   4                                      lcdcmd(0x01);
+ 172   4                                      break;
+ 173   4                              }
+ 174   3                      }
+ 175   2              }
+ 176   1              logic(total, total_loop, xy_coordinates);
+ 177   1              return;
+ 178   1      }
+ 179          void logic(unsigned char total, unsigned char total_loop, unsigned char xy_coordinates[20])
+C51 COMPILER V9.03   CONTROLLER1                                                           06/09/2013 19:20:17 PAGE 4   
+
+ 180          {
+ 181   1              unsigned char side1, side2, side3, side4;       
+ 182   1      
+ 183   1              // By default robot will be moving clockwise
+ 184   1              // By default considering four points
+ 185   1              
+ 186   1              // Converting ASCII to Binary
+ 187   1              lcdcmd(0x01);
+ 188   1              for (total_loop=0; total_loop<=((2*total)-1); total_loop++)
+ 189   1              {
+ 190   2                      xy_coordinates[total_loop] = xy_coordinates[total_loop] & 0x0F;                                                                                                   
+ 191   2              }
+ 192   1      
+ 193   1              // Now calculating pulses to run motors
+ 194   1              side1 = xy_coordinates[3] - xy_coordinates[1]; 
+ 195   1              side2 = xy_coordinates[4] - xy_coordinates[2];
+ 196   1              side3 = xy_coordinates[5] - xy_coordinates[7];
+ 197   1              side4 = xy_coordinates[6] - xy_coordinates[0];
+ 198   1              
+ 199   1              // Relation between pulses and feet
+ 200   1              side1 = side1/1;
+ 201   1              side2 = side2/1;
+ 202   1              side3 = side3/1;
+ 203   1              side4 = side4/1;
+ 204   1      
+ 205   1              start(side1, side2, side3, side4);
+ 206   1      
+ 207   1              return;
+ 208   1      }
+ 209          void start(unsigned char side1, unsigned char side2, unsigned char side3, unsigned char side4)
+ 210          {
+ 211   1              code unsigned char info1[] = "Status:"; 
+ 212   1              code unsigned char info2[] = "MOVING";
+ 213   1              lcdcmd(0x80);   
+ 214   1              for (i=0;i<=(strlen(info1)-1);i++)
+ 215   1              {
+ 216   2                      lcddata(info1[i]);                              
+ 217   2              }
+ 218   1              lcdcmd(0xC2);
+ 219   1              for (i=0;i<=(strlen(info2)-1);i++)
+ 220   1              {
+ 221   2                      lcddata(info2[i]);                              
+ 222   2              }
+ 223   1      //      P3=0x30;
+ 224   1      
+ 225   1              while(1)
+ 226   1              {
+ 227   2      // Driving side 1               
+ 228   2              m11=m12=m21=m22=0;
+ 229   2              start_counters();
+ 230   2              while(1)                
+ 231   2              {
+ 232   3                      m11=m22=1;
+ 233   3                      m12=m21=0;
+ 234   3                      if(us_l == 1 || us_r == 1 || us_f == 1 || us_b == 1)
+ 235   3                      {
+ 236   4                              m11=m21=m12=m22=0;
+ 237   4                              stepper_fire();
+ 238   4                      }
+ 239   3              
+ 240   3                      if(TL0 >= side1)
+ 241   3                      {
+C51 COMPILER V9.03   CONTROLLER1                                                           06/09/2013 19:20:17 PAGE 5   
+
+ 242   4                              m11=m12=m21=m22=0;
+ 243   4                              TR0=0;
+ 244   4                              break;
+ 245   4                      }
+ 246   3              }
+ 247   2      // Turn 90* CW
+ 248   2                      m11=m12=m21=m22=0;
+ 249   2                      start_counters();
+ 250   2                      while(1)        
+ 251   2                      {
+ 252   3                              m11=1;
+ 253   3                              m12=m21=m22=0;
+ 254   3                              if ( TL0>= 6)
+ 255   3                              {
+ 256   4                                      m11=m12=m21=m22=0;
+ 257   4                                      TR0=0;
+ 258   4                                      break;  
+ 259   4                              }               
+ 260   3                      }
+ 261   2      
+ 262   2      // Driving side2
+ 263   2                      m11=m12=m21=m22=0;
+ 264   2                      start_counters();
+ 265   2                      while(1)        
+ 266   2                      {
+ 267   3                              m11=m22=1;
+ 268   3                              m12=m21=0;
+ 269   3                              
+ 270   3                              if(us_l == 1 || us_r == 1 || us_f == 1 || us_b == 1)
+ 271   3                              {
+ 272   4                                      m11=m21=m12=m22=0;
+ 273   4                                      stepper_fire();
+ 274   4                              }
+ 275   3      
+ 276   3                              if(TL0 >= side2)
+ 277   3                              {
+ 278   4                                      m11=m12=m21=m22=0;
+ 279   4                                      TR0=0;
+ 280   4                                      break;
+ 281   4                              }
+ 282   3                      }
+ 283   2      // Trun 90* CW
+ 284   2                      m11=m12=m21=m22=0;
+ 285   2                      start_counters();
+ 286   2                      while(1)                // Turn
+ 287   2                      {
+ 288   3                              m11=1;
+ 289   3                              m12=m21=m22=0;
+ 290   3                              if ( TL0>= 6)
+ 291   3                              {
+ 292   4                                      m11=m12=m21=m22=0;
+ 293   4                                      TR0=0;
+ 294   4                                      break;  
+ 295   4                              }               
+ 296   3                      }
+ 297   2       // Driving side3
+ 298   2                      m11=m12=m21=m22=0;
+ 299   2                      start_counters();
+ 300   2                      while(1)                
+ 301   2                      {
+ 302   3                              m11=m22=1;
+ 303   3                              m12=m21=0;
+C51 COMPILER V9.03   CONTROLLER1                                                           06/09/2013 19:20:17 PAGE 6   
+
+ 304   3                              
+ 305   3                              if(us_l == 1 || us_r == 1 || us_f == 1 || us_b == 1)
+ 306   3                              {
+ 307   4                                      m11=m21=m12=m22=0;
+ 308   4                                      stepper_fire();
+ 309   4                              }
+ 310   3      
+ 311   3                              if(TL0 >= side3)
+ 312   3                              {
+ 313   4                                      m11=m12=m21=m22=0;
+ 314   4                                      TR0=0;
+ 315   4                                      break;
+ 316   4                              }
+ 317   3                      }
+ 318   2      // Turn 90* CW
+ 319   2                      m11=m12=m21=m22=0;
+ 320   2                      start_counters();
+ 321   2                      while(1)                // Turn
+ 322   2                      {
+ 323   3                              m11=1;
+ 324   3                              m12=m21=m22=0;
+ 325   3                              if ( TL0>= 6)
+ 326   3                              {
+ 327   4                                      m11=m12=m21=m22=0;
+ 328   4                                      TR0=0;
+ 329   4                                      break;  
+ 330   4                              }               
+ 331   3                      }
+ 332   2       // Driving side4
+ 333   2                      m11=m12=m21=m22=0;
+ 334   2                      start_counters();
+ 335   2                      while(1)                
+ 336   2                      {
+ 337   3                              m11=m22=1;
+ 338   3                              m12=m21=0;
+ 339   3                              
+ 340   3                              if(us_l == 1 || us_r == 1 || us_f == 1 || us_b == 1)
+ 341   3                              {
+ 342   4                                      m11=m21=m12=m22=0;
+ 343   4                                      stepper_fire();
+ 344   4                              }
+ 345   3      
+ 346   3                              if(TL0 >= side4)
+ 347   3                              {
+ 348   4                                      m11=m12=m21=m22=0;
+ 349   4                                      TR0=0;
+ 350   4                                      break;
+ 351   4                              }
+ 352   3                      }
+ 353   2                      
+ 354   2      // Turn 90* CW
+ 355   2                      m11=m12=m21=m22=0;
+ 356   2                      start_counters();
+ 357   2                      while(1)                // Turn
+ 358   2                      {
+ 359   3                              m11=1;
+ 360   3                              m12=m21=m22=0;
+ 361   3                              if ( TL0>= 6)
+ 362   3                              {
+ 363   4                                      m11=m12=m21=m22=0;
+ 364   4                                      TR0=0;
+ 365   4                                      break;  
+C51 COMPILER V9.03   CONTROLLER1                                                           06/09/2013 19:20:17 PAGE 7   
+
+ 366   4                              }               
+ 367   3                      }
+ 368   2              }
+ 369   1              return;
+ 370   1      }
+ 371          
+ 372          
+ 373          void start_counters(void)
+ 374          {
+ 375   1              TH0=0;
+ 376   1              TL0=0;
+ 377   1              TF0=0;
+ 378   1              TR0=1;
+ 379   1      
+ 380   1              return;
+ 381   1      }
+ 382          
+ 383          /////////////////////////////////////////////////////////////////////////
+ 384          void lcdcmd(unsigned char value)                   // Sending Commands to LCD
+ 385          {
+ 386   1              lcdready();
+ 387   1              lcd=value;
+ 388   1              rs=0;
+ 389   1              rw=0;
+ 390   1              en=1;
+ 391   1              delay(50);
+ 392   1              en=0;
+ 393   1              return;
+ 394   1      }
+ 395          /////////////////////////////////////////////////////////////////////////
+ 396          void lcddata(unsigned char value)                      // Sending Data to LCD
+ 397          {
+ 398   1              lcdready();      
+ 399   1              lcd=value;
+ 400   1              rs=1;
+ 401   1              rw=0;
+ 402   1              en=1;
+ 403   1              delay(50);
+ 404   1              en=0;
+ 405   1              return;
+ 406   1      }
+ 407          /////////////////////////////////////////////////////////////////////////
+ 408          void lcdready(void)              // Checking wether LCD is busy, if yes wait!
+ 409          {
+ 410   1              lcdbusy=1;
+ 411   1              rs=0;
+ 412   1              rw=1;
+ 413   1              while(lcdbusy==1)
+ 414   1              {
+ 415   2                      en=0;
+ 416   2                      delay(50);
+ 417   2                      en=1;
+ 418   2              }       
+ 419   1              return;
+ 420   1      }
+ 421          /////////////////////////////////////////////////////////////////////////
+ 422          char kpad(void)                                         // Keypad Subroutine
+ 423          {                               
+ 424   1              unsigned char c,r,x;
+ 425   1              P1=0x00;
+ 426   1              col=col & 0xF0;
+ 427   1              col=col | 0x0F;
+C51 COMPILER V9.03   CONTROLLER1                                                           06/09/2013 19:20:17 PAGE 8   
+
+ 428   1              while(1)
+ 429   1              {
+ 430   2                      do
+ 431   2                      {
+ 432   3                              row=0x00;
+ 433   3                              c=col;
+ 434   3                              c&=0x0F;
+ 435   3                      }               
+ 436   2                      while(c!=0x0F); //
+ 437   2                      
+ 438   2                      do
+ 439   2                      {
+ 440   3                              do
+ 441   3                              {
+ 442   4                                      delay(20);
+ 443   4                                      c=col;
+ 444   4                                      c&=0x0F;//
+ 445   4                              }
+ 446   3                              while(c==0x0F);//
+ 447   3                              
+ 448   3                              delay(20);
+ 449   3                              c=col;
+ 450   3                              c&=0x0F;//
+ 451   3                      }
+ 452   2                      while(c==0x0F);//
+ 453   2      
+ 454   2                      while(1)
+ 455   2                      {
+ 456   3                              row=0xfe;
+ 457   3                              c=col;
+ 458   3                              c&=0x0F;//
+ 459   3                              if(c!=0x0F)//
+ 460   3                              {
+ 461   4                                      r=0;
+ 462   4                                      break;
+ 463   4                              }
+ 464   3      
+ 465   3                              row=0xfd;
+ 466   3                              c=col;
+ 467   3                              c&=0x0F;//
+ 468   3                              if(c!=0x0F)//
+ 469   3                              {
+ 470   4                                      r=1;
+ 471   4                                      break;
+ 472   4                              }
+ 473   3      
+ 474   3                              row=0xfb;
+ 475   3                              c=col;
+ 476   3                              c&=0x0F;//
+ 477   3                              if(c!=0x0F)//
+ 478   3                              {
+ 479   4                                      r=2;
+ 480   4                                      break;
+ 481   4                              }
+ 482   3      
+ 483   3                              row=0xf7;
+ 484   3                              c=col;
+ 485   3                              c&=0x0F;//
+ 486   3                              r=3;
+ 487   3                              break;
+ 488   3                      }
+ 489   2              
+C51 COMPILER V9.03   CONTROLLER1                                                           06/09/2013 19:20:17 PAGE 9   
+
+ 490   2                      if(c==0x0e)
+ 491   2                      {
+ 492   3                              x=keypad[r][0];
+ 493   3                      }
+ 494   2                      else if(c==0x0d)
+ 495   2                      {
+ 496   3                              x=keypad[r][1];
+ 497   3                      }
+ 498   2                      else if(c==0x0b)
+ 499   2                      {
+ 500   3                              x=keypad[r][2];
+ 501   3                      }
+ 502   2                      else
+ 503   2                      {
+ 504   3                              x=keypad[r][3];
+ 505   3                      }
+ 506   2                      return x;
+ 507   2              }
+ 508   1      }
+ 509          /////////////////////////////////////////////////////////////////////////
+ 510          void delay(unsigned int z)
+ 511          {       
+ 512   1              for(z=1;z<=900;z++);
+ 513   1              return;
+ 514   1      }
+ 515          /////////////////////////////////////////////////////////////////////////
+ 516          void stepper_fire(void)
+ 517          {
+ 518   1              if (us_l==1)
+ 519   1              {
+ 520   2                      SBUF = 3;
+ 521   2                      while(TI==0);
+ 522   2                      TI=0;
+ 523   2      
+ 524   2                      while(1)
+ 525   2                      {
+ 526   3                              while(RI==0);
+ 527   3                              RI=0;
+ 528   3                              if(SBUF==9)
+ 529   3                              break;
+ 530   3                      }
+ 531   2      
+ 532   2                      while(us_l==1);
+ 533   2              }
+ 534   1      
+ 535   1              if (us_r==1)
+ 536   1              {
+ 537   2                      SBUF = 1;
+ 538   2                      while(TI==0);
+ 539   2                      TI=0;
+ 540   2      
+ 541   2                      while(1)
+ 542   2                      {
+ 543   3                              while(RI==0);
+ 544   3                              RI=0;
+ 545   3                              if(SBUF==9)
+ 546   3                              break;
+ 547   3                      }
+ 548   2      
+ 549   2                      while(us_r==1);
+ 550   2              }
+ 551   1      
+C51 COMPILER V9.03   CONTROLLER1                                                           06/09/2013 19:20:17 PAGE 10  
+
+ 552   1              if (us_f==1)
+ 553   1              {
+ 554   2                      SBUF = 0;
+ 555   2                      while(TI==0);
+ 556   2                      TI=0;
+ 557   2      
+ 558   2                      while(1)
+ 559   2                      {
+ 560   3                              while(RI==0);
+ 561   3                              RI=0;
+ 562   3                              if(SBUF==9)
+ 563   3                              break;
+ 564   3                      }
+ 565   2      
+ 566   2                      while(us_f==1);
+ 567   2              }
+ 568   1      
+ 569   1              if (us_b==1)
+ 570   1              {
+ 571   2                      SBUF = 2;
+ 572   2                      while(TI==0);
+ 573   2                      TI=0;
+ 574   2      
+ 575   2                      while(1)
+ 576   2                      {
+ 577   3                              while(RI==0);
+ 578   3                              RI=0;
+ 579   3                              if(SBUF==9)
+ 580   3                              break;
+ 581   3                      }
+ 582   2      
+ 583   2                      while(us_b==1);
+ 584   2              }
+ 585   1              return;
+ 586   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1420    ----
+   CONSTANT SIZE    =     61    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     14      38
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

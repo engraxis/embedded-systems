@@ -1,0 +1,92 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        11/09/2003  15:48:29  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE Electronic Lude.obj TO Electronic Lude CODE (0X0000-0X0FFF)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  Electronic Lude.obj (ELECTRONIC_LUDE)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  Electronic Lude (ELECTRONIC_LUDE)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         ?DT?ELECTRONIC_LUDE
+            IDATA   000AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0003H     ABSOLUTE     
+                    0006H     07FAH                  *** GAP ***
+            CODE    0800H     0028H     UNIT         ?PR?MAIN?ELECTRONIC_LUDE
+            CODE    0828H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0834H     0004H     UNIT         ?PR?ON_EX0?ELECTRONIC_LUDE
+
+
+
+OVERLAY MAP OF MODULE:   Electronic Lude (ELECTRONIC_LUDE)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?ELECTRONIC_LUDE
+
+
+
+SYMBOL TABLE OF MODULE:  Electronic Lude (ELECTRONIC_LUDE)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ELECTRONIC_LUDE
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00B0H.2       PUBLIC        check
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  C:0800H         PUBLIC        main
+  C:0834H         PUBLIC        on_ex0
+  D:0008H         PUBLIC        i
+BL51 BANKED LINKER/LOCATER V6.22                                                      11/09/2003  15:48:29  PAGE 2
+
+
+  -------         PROC          ON_EX0
+  C:0834H         LINE#         4
+  C:0834H         LINE#         6
+  C:0837H         LINE#         7
+  -------         ENDPROC       ON_EX0
+  -------         PROC          MAIN
+  C:0800H         LINE#         8
+  C:0800H         LINE#         9
+  C:0800H         LINE#         10
+  C:0803H         LINE#         11
+  C:0806H         LINE#         12
+  C:0806H         LINE#         13
+  C:0806H         LINE#         14
+  C:0808H         LINE#         15
+  C:081EH         LINE#         16
+  C:0823H         LINE#         17
+  C:0823H         LINE#         18
+  C:0826H         LINE#         19
+  C:0826H         LINE#         20
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        ELECTRONIC_LUDE
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 002FH BYTE ( 2%) *
+******************************************************************************
+
+Program Size: data=11.0 xdata=0 code=62
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

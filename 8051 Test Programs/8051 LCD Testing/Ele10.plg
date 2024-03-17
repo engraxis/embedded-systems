@@ -1,0 +1,21 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\Engr. Abdullah Tahir\abz - LABORATORY\ALL PROJECTS\8051 Test Programs\8051 LCD Testing\CCD.uvproj
+Project File Date:  10/03/2012
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling Code.c...
+linking...
+Program Size: data=13.0 xdata=0 code=179
+creating hex file from "Ele10"...
+"Ele10" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling Code.c...
+linking...
+Program Size: data=13.0 xdata=0 code=179
+creating hex file from "Ele10"...
+"Ele10" - 0 Error(s), 0 Warning(s).

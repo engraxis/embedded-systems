@@ -1,0 +1,34 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.5.4	//
+!_TAG_REVISION_NAME	MCHPTags	//
+!_TAG_REVISION_VERSION	6.0.1	//
+INT0_isr	F:\Abdullah Tahir\Simple\Stepper.c	14;"	p	line:14	file:	signature:(void)
+INT0_isr	F:\Abdullah Tahir\Simple\Stepper.c	319;"	f	line:319	signature:(void)
+ccw::PORTDbits.RD7	F:\Abdullah Tahir\Simple\Stepper.c	26;"	d	line:26	file:
+ccw_cmove	F:\Abdullah Tahir\Simple\Stepper.c	18;"	p	line:18	file:	signature:(void)
+ccw_cmove	F:\Abdullah Tahir\Simple\Stepper.c	201;"	f	line:201	signature:(void)
+ccw_move	F:\Abdullah Tahir\Simple\Stepper.c	20;"	p	line:20	file:	signature:(void)
+ccw_move	F:\Abdullah Tahir\Simple\Stepper.c	278;"	f	line:278	signature:(void)
+ccwc::PORTDbits.RD5	F:\Abdullah Tahir\Simple\Stepper.c	24;"	d	line:24	file:
+chk_isr	F:\Abdullah Tahir\Simple\Stepper.c	13;"	p	line:13	file:	signature:(void)
+chk_isr	F:\Abdullah Tahir\Simple\Stepper.c	33;"	f	line:33	signature:(void)
+cw::PORTDbits.RD6	F:\Abdullah Tahir\Simple\Stepper.c	25;"	d	line:25	file:
+cw_cmove	F:\Abdullah Tahir\Simple\Stepper.c	165;"	f	line:165	signature:(void)
+cw_cmove	F:\Abdullah Tahir\Simple\Stepper.c	17;"	p	line:17	file:	signature:(void)
+cw_move	F:\Abdullah Tahir\Simple\Stepper.c	19;"	p	line:19	file:	signature:(void)
+cw_move	F:\Abdullah Tahir\Simple\Stepper.c	237;"	f	line:237	signature:(void)
+cwc::PORTDbits.RD4	F:\Abdullah Tahir\Simple\Stepper.c	23;"	d	line:23	file:
+delay	F:\Abdullah Tahir\Simple\Stepper.c	15;"	p	line:15	file:	signature:(void)
+delay	F:\Abdullah Tahir\Simple\Stepper.c	392;"	f	line:392	signature:(void)
+main	F:\Abdullah Tahir\Simple\Stepper.c	50;"	f	line:50	signature:(void)
+pos	F:\Abdullah Tahir\Simple\Stepper.c	29;"	v	line:29
+res::PORTDbits.RD3	F:\Abdullah Tahir\Simple\Stepper.c	22;"	d	line:22	file:
+reset	F:\Abdullah Tahir\Simple\Stepper.c	16;"	p	line:16	file:	signature:(void)
+reset	F:\Abdullah Tahir\Simple\Stepper.c	92;"	f	line:92	signature:(void)
+rest	F:\Abdullah Tahir\Simple\Stepper.c	30;"	v	line:30
+steps	F:\Abdullah Tahir\Simple\Stepper.c	28;"	v	line:28
+superrest	F:\Abdullah Tahir\Simple\Stepper.c	42;"	f	line:42	signature:(void)

@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"transmitter.obj" 
+TO "transmitter" 
+CODE( 0X0000-0X0FFF )
